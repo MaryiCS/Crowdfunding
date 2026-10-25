@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador precampaña Crowdfunding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .menu button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover, .menu button.active {
+            background-color: #2980b9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], button, .delete-btn, .restore-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover, button:hover, .delete-btn:hover, .restore-btn:hover {
+            background-color: #2980b9;
+        }
+        .profile {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            width: 100%;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div>  
+        <div>
+            <label for="moneda">Seleccione la moneda:</label>
+            <select id="moneda" onchange="cambiarMoneda()">
+                <option value="COP">Pesos colombianos (COP)</option>
+                <option value="USD">Dólares estadounidenses (USD)</option>
+            </select>
+        </div>
+        <br>
+        
+        <table id="costos-table">
+            <tr>
+                <td>Cantidad de unidades a producir</td>
+                <td><input type="number" id="unidades" value="80"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th>Concepto</th>
+                <th>Unitario</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td colspan="3"><strong>COSTOS DE PRODUCCIÓN</strong></td>
+            </tr>
+            <tr>
+                <td>Materiales</td>
+                <td><input type="number" id="materiales-unitario" value="4700"></td>
+                <td id="materiales-total"></td>
+            </tr>
+            <tr>
+                <td>Proveedores</td>
+                <td><input type="number" id="proveedores-unitario" value="2000"></td>
+                <td id="proveedores-total"></td>
+            </tr>
+            <tr>
+                <td>Otros</td>
+                <td><input type="number" id="otros-unitario" value="50000"></td>
+                <td id="otros-total"></td>
+            </tr>
+            <tr class="subtotal">
+                <td>TOTAL COSTOS DE PRODUCCIÓN</td>
+                <td id="total-produccion-unitario"></td>
+                <td id="total-produccion-total"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><strong>ENVÍO</strong></td>
+            </tr>
+            <tr>
+                <td>Nacional</td>
+                <td><input type="number" id="envio-nacional-unitario" value="15000"></td>
+                <td id="envio-nacional-total"></td>
+            </tr>
+            <tr>
+                <td>Internacional</td>
+                <td><input type="number" id="envio-internacional-unitario" value="50000"></td>
+                <td id="envio-internacional-total"></td>
+            </tr>
+            <tr class="subtotal">
+                <td>TOTAL ENVÍO</td>
+                <td id="total-envio-unitario"></td>
+                <td id="total-envio-total"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><strong>EMPAQUETADO</strong></td>
+            </tr>
+            <tr>
+                <td>Paquete</td>
+                <td><input type="number" id="paquete-unitario" value="5000"></td>
+                <td id="paquete-total"></td>
+            </tr>
+            <tr>
+                <td>Material</td>
+                <td><input type="number" id="material-unitario" value="8000"></td>
+                <td id="material-total"></td>
+            </tr>
+            <tr class="subtotal">
+                <td>TOTAL EMPAQUETADO</td>
+                <td id="total-empaquetado-unitario"></td>
+                <td id="total-empaquetado-total"></td>
+            </tr>
+            <tr class="total">
+                <td>TOTAL PARCIAL 1 (T1)</td>
+                <td id="total-parcial1-unitario"></td>
+                <td id="total-parcial1-total"></td>
+            </tr>
+            <tr>
+                <td>COMISIÓN DE PLATAFORMA</td>
+                <td>
+                    <input type="number" id="comision-plataforma" class="porcentaje" value="5">%
+                    <span id="comision-plataforma-unitario"></span>
+                </td>
+                <td id="comision-plataforma-total"></td>
+            </tr>
+            <tr>
+                <td>COMISIÓN DE PAGO</td>
+                <td>
+                    <input type="number" id="comision-pago" class="porcentaje" value="4">%
+                    <span id="comision-pago-unitario"></span>
+                </td>
+                <td id="comision-pago-total"></td>
+            </tr>
+            <tr class="subtotal">
+                <td>TOTAL COMISIONES</td>
+                <td id="total-comisiones-unitario"></td>
+                <td id="total-comisiones-total"></td>
+            </tr>
+            <tr class="total">
+                <td>TOTAL PARCIAL 2 (T2)</td>
+                <td id="total-parcial2-unitario"></td>
+                <td id="total-parcial2-total"></td>
+            </tr>
+            <tr>
+                <td>IVA</td>
+                <td>
+                    <input type="number" id="iva" class="porcentaje" value="19">%
+                    <span id="iva-unitario"></span>
+                </td>
+                <td id="iva-total"></td>
+            </tr>
+            <tr>
+                <td>Retención</td>
+                <td>
+                    <input type="number" id="retencion" class="porcentaje" value="4">%
+                    <span id="retencion-unitario"></span>
+                </td>
+                <td id="retencion-total"></td>
+            </tr>
+            <tr class="total">
+                <td>TOTAL PARCIAL 3 (T3)</td>
+                <td id="total-parcial3-unitario"></td>
+                <td id="total-parcial3-total"></td>
+            </tr>
+            <tr class="total">
+                <td>TOTAL GENERAL</td>
+                <td id="total-general-unitario"></td>
+                <td id="total-general-total"></td>
+            </tr>
+        </table>
+    </div>
+    <br><br>
+
+    <div class="actions">
+        <button onclick="mostrarMensaje()">Guardar Parcial</button>
+        <button onclick="mostrarMensaje()">Guardar Como</button>
+        <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+    </div>
+</div>
+<footer>
+    Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+    empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+</footer>
+
+<script>
+    let monedaActual = 'COP';
+    const formatoMoneda = {
+        'COP': { estilo: 'currency', moneda: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 },
+        'USD': { estilo: 'currency', moneda: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }
+    };
+
+    function formatearMoneda(valor) {
+        return new Intl.NumberFormat('es-CO', formatoMoneda[monedaActual]).format(valor);
+    }
+
+    function cambiarMoneda() {
+        monedaActual = document.getElementById('moneda').value;
+        calcularCostos();
+    }
+
+    function calcularCostos() {
+        const unidades = parseFloat(document.getElementById('unidades').value) || 0;
+
+        function calcular(id) {
+            const unitario = parseFloat(document.getElementById(id + '-unitario').value) || 0;
+            const total = unitario * unidades;
+            document.getElementById(id + '-total').textContent = formatearMoneda(total);
+            return { unitario, total };
+        }
+
+        // Costos de producción
+        const materiales = calcular('materiales');
+        const proveedores = calcular('proveedores');
+        const otros = calcular('otros');
+        const totalProduccion = materiales.total + proveedores.total + otros.total;
+        document.getElementById('total-produccion-unitario').textContent = formatearMoneda(totalProduccion / unidades);
+        document.getElementById('total-produccion-total').textContent = formatearMoneda(totalProduccion);
+
+        // Envío
+        const envioNacional = calcular('envio-nacional');
+        const envioInternacional = calcular('envio-internacional');
+        const totalEnvio = envioNacional.total + envioInternacional.total;
+        document.getElementById('total-envio-unitario').textContent = formatearMoneda(totalEnvio / unidades);
+        document.getElementById('total-envio-total').textContent = formatearMoneda(totalEnvio);
+
+        // Empaquetado
+        const paquete = calcular('paquete');
+        const material = calcular('material');
+        const totalEmpaquetado = paquete.total + material.total;
+        document.getElementById('total-empaquetado-unitario').textContent = formatearMoneda(totalEmpaquetado / unidades);
+        document.getElementById('total-empaquetado-total').textContent = formatearMoneda(totalEmpaquetado);
+
+        // Total Parcial 1
+        const totalParcial1 = totalProduccion + totalEnvio + totalEmpaquetado;
+        document.getElementById('total-parcial1-unitario').textContent = formatearMoneda(totalParcial1 / unidades);
+        document.getElementById('total-parcial1-total').textContent = formatearMoneda(totalParcial1);
+
+        // Comisiones
+        const comisionPlataformaPorcentaje = parseFloat(document.getElementById('comision-plataforma').value) / 100;
+        const comisionPlataforma = totalParcial1 * comisionPlataformaPorcentaje;
+        document.getElementById('comision-plataforma-unitario').textContent = formatearMoneda(comisionPlataforma / unidades);
+        document.getElementById('comision-plataforma-total').textContent = formatearMoneda(comisionPlataforma);
+
+        const comisionPagoPorcentaje = parseFloat(document.getElementById('comision-pago').value) / 100;
+        const comisionPago = totalParcial1 * comisionPagoPorcentaje;
+        document.getElementById('comision-pago-unitario').textContent = formatearMoneda(comisionPago / unidades);
+        document.getElementById('comision-pago-total').textContent = formatearMoneda(comisionPago);
+
+        // Total Comisiones
+        const totalComisiones = comisionPlataforma + comisionPago;
+        document.getElementById('total-comisiones-unitario').textContent = formatearMoneda(totalComisiones / unidades);
+        document.getElementById('total-comisiones-total').textContent = formatearMoneda(totalComisiones);
+
+        // Total Parcial 2
+        const totalParcial2 = totalParcial1 + totalComisiones;
+        document.getElementById('total-parcial2-unitario').textContent = formatearMoneda(totalParcial2 / unidades);
+        document.getElementById('total-parcial2-total').textContent = formatearMoneda(totalParcial2);
+
+        // Impuestos
+        const ivaPorcentaje = parseFloat(document.getElementById('iva').value) / 100;
+        const iva = totalParcial2 * ivaPorcentaje;
+        document.getElementById('iva-unitario').textContent = formatearMoneda(iva / unidades);
+        document.getElementById('iva-total').textContent = formatearMoneda(iva);
+
+        const retencionPorcentaje = parseFloat(document.getElementById('retencion').value) / 100;
+        const retencion = iva * retencionPorcentaje;
+        document.getElementById('retencion-unitario').textContent = formatearMoneda(retencion / unidades);
+        document.getElementById('retencion-total').textContent = formatearMoneda(retencion);
+
+        // Total Parcial 3
+        const totalParcial3 = iva + retencion;
+        document.getElementById('total-parcial3-unitario').textContent = formatearMoneda(totalParcial3 / unidades);
+        document.getElementById('total-parcial3-total').textContent = formatearMoneda(totalParcial3);
+
+        // Total General
+        const totalGeneral = totalParcial1 + totalParcial2 + totalParcial3;
+        document.getElementById('total-general-unitario').textContent = formatearMoneda(totalGeneral / unidades);
+        document.getElementById('total-general-total').textContent = formatearMoneda(totalGeneral);
+    }
+
+    function mostrarMensaje() {
+        alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+    }
+
+    // Inicializar cálculos y agregar event listeners
+    document.querySelectorAll('input, select').forEach(input => {
+        input.addEventListener('input', calcularCostos);
+    });
+    calcularCostos();
+
+    // Actualizar el año en el pie de página
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
