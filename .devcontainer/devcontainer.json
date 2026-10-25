@@ -1,0 +1,1 @@
+{"image":"mcr.microsoft.com/devcontainers/base:ubuntu","customizations":{"codespaces":{"repositories":{"MaryiCS/*":{"permissions":{"contents":"read"}}}}}}
