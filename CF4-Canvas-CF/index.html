@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador precampaña Crowdfunding</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                overflow: hidden;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                flex: 1;
+            }
+            h1, h2, h3 {
+                color: #2c3e50;
+            }
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .menu a, .menu button {
+                display: inline-block;
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                text-decoration: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .menu a:hover, .menu button:hover {
+                background-color: #2980b9;
+            }
+            .menu a.active, .menu button.active {
+                background-color: #2980b9;
+            }
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            input[type="text"], textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px; /* Borde redondeado */
+                box-sizing: border-box;
+            }
+            input[type="submit"] {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                font-size: 16px;
+            }
+            input[type="submit"]:hover {
+                background-color: #2980b9;
+            }
+            .error {
+                color: #e74c3c;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            footer {
+                background-color: #2c3e50;
+                color: #ecf0f1;
+                text-align: center;
+                padding: 10px 0;
+                width: 100%;
+            }
+            .explanation {
+                font-size: 0.9em;
+                color: #7f8c8d;
+                margin-top: 5px;
+                margin-bottom: 15px;
+            }
+            .actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .actions button {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                font-size: 16px;
+            }
+            .actions button:hover {
+                background-color: #2980b9;
+            }
+            .canvas-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 20px;
+            }
+            .canvas-item {
+                border: 1px solid #ccc;
+                padding: 10px;
+                background-color: #f9f9f9;
+            }
+            .canvas-item h3 {
+                margin-top: 0;
+                border-bottom: 2px solid #3498db;
+                padding-bottom: 5px;
+            }
+            .canvas-item textarea {
+                width: 100%;
+                height: 100px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                resize: none;
+            }
+            .save-button {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+                margin-top: 20px;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+            .save-button:hover {
+                background-color: #2980b9;
+            }
+        </style>
+    </head>
+    
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div>  
+        <div id="Canvas" class="tabcontent" style="display:block;">
+
+            <h1>Canvas del Crowdfunding</h1>
+            <div class="canvas-grid">
+                <div class="canvas-item">
+                    <h3>Problema - Solución</h3>
+                    <textarea id="problemaSolucionCanvas"></textarea>
+                </div>
+                <div class="canvas-item">
+                    <h3>Ventaja Competitiva Injusta</h3>
+                    <textarea id="ventajaCompetitivaCanvas"></textarea>
+                </div>
+                <div class="canvas-item">
+                    <h3>Descripción</h3>
+                    <textarea id="descripcionCanvas"></textarea>
+                </div>
+                <div class="canvas-item">
+                    <h3>Canales</h3>
+                    <textarea id="canalesCanvas"></textarea>
+                </div>
+                <div class="canvas-item">
+                    <h3>Mecenas</h3>
+                    <textarea id="mecenasCanvas"></textarea>
+                </div>
+                <div class="canvas-item">
+                    <h3>Legal</h3>
+                    <textarea id="legalCanvas"></textarea>
+                </div>
+                <div class="canvas-item">
+                    <h3>Métricas Clave</h3>
+                    <textarea id="metricasClaveCanvas"></textarea>
+                </div>
+                <div class="canvas-item">
+                    <h3>Costos</h3>
+                    <textarea id="costosCanvas"></textarea>
+                </div>
+                <div class="canvas-item">
+                    <h3>Ingresos</h3>
+                    <textarea id="ingresosCanvas"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Otros componentes irán aquí -->
+
+    </div>
+    <div class="actions">
+        <button onclick="mostrarMensaje()">Guardar Parcial</button>
+        <button onclick="mostrarMensaje()">Guardar Como</button>
+        <a href="<!-- Agregar aquí el enlace al menú principal -->" target="_blank"><button>Regresar al Menú Principal</button></a>
+    </div>
+    
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+    empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+        
+      </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("menu button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.target.className += " active";
+        }
+
+        // Función para llenar el Canvas con la información del Modelo de Negocio
+        function fillCanvas() {
+            document.getElementById('problemaSolucionCanvas').textContent = document.getElementById('problemaSolucion').value;
+            document.getElementById('ventajaCompetitivaCanvas').textContent = document.getElementById('ventajaCompetitiva').value;
+            document.getElementById('descripcionCanvas').textContent = document.getElementById('descripcionIniciativa').value;
+            document.getElementById('canalesCanvas').textContent = document.getElementById('canales').value;
+            document.getElementById('mecenasCanvas').textContent = document.getElementById('mecenas').value;
+            document.getElementById('legalCanvas').textContent = document.getElementById('legalidad').value;
+            document.getElementById('metricasClaveCanvas').textContent = document.getElementById('metricasClave').value;
+            document.getElementById('costosCanvas').textContent = document.getElementById('costos').value;
+            document.getElementById('ingresosCanvas').textContent = document.getElementById('ingresos').value;
+        }
+        
+        // Llamar a fillCanvas cuando se carga la página y cuando se cambia a la pestaña del Canvas
+        window.addEventListener('load', fillCanvas);
+        document.querySelector('.menu button:nth-child(4)').addEventListener('click', fillCanvas);
+
+        // Actualizar el año en el pie de página
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Función para guardar el contenido de los textareas
+        function saveCanvas() {
+            const problemaSolucion = document.getElementById('problemaSolucionCanvas').value;
+            const ventajaCompetitiva = document.getElementById('ventajaCompetitivaCanvas').value;
+            const descripcion = document.getElementById('descripcionCanvas').value;
+            const canales = document.getElementById('canalesCanvas').value;
+            const mecenas = document.getElementById('mecenasCanvas').value;
+            const legal = document.getElementById('legalCanvas').value;
+            const metricasClave = document.getElementById('metricasClaveCanvas').value;
+            const costos = document.getElementById('costosCanvas').value;
+            const ingresos = document.getElementById('ingresosCanvas').value;
+
+            // Aquí puedes agregar la lógica para guardar estos valores, por ejemplo, enviándolos a un servidor o almacenándolos localmente
+            console.log('Contenido guardado:', {
+                problemaSolucion,
+                ventajaCompetitiva,
+                descripcion,
+                canales,
+                mecenas,
+                legal,
+                metricasClave,
+                costos,
+                ingresos
+            });
+            alert('Contenido guardado exitosamente');
+        }
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+    </script>
+</body>
+</html>
