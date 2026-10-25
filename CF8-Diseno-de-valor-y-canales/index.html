@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador precampaña Crowdfunding</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                overflow: hidden;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                flex: 1;
+            }
+            h1, h2, h3 {
+                color: #2c3e50;
+            }
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .menu a, .menu button {
+                display: inline-block;
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                text-decoration: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .menu a:hover, .menu button:hover {
+                background-color: #2980b9;
+            }
+            .menu a.active, .menu button.active {
+                background-color: #2980b9;
+            }
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            input[type="text"], select, textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px; /* Borde redondeado */
+                box-sizing: border-box;
+            }
+            input[type="submit"], .add-funder-btn, .add-partner-btn, .add-product-btn {
+                background-color: #3498db; /* Color azul */
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                font-size: 16px;
+            }
+            input[type="submit"]:hover, .add-funder-btn:hover, .add-partner-btn:hover, .add-product-btn:hover {
+                background-color: #2980b9; /* Color azul oscuro */
+            }
+            .error {
+                color: #e74c3c;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            footer {
+                background-color: #2c3e50;
+                color: #ecf0f1;
+                text-align: center;
+                padding: 10px 0;
+                width: 100%;
+            }
+            .funder-item, .partner-item {
+                background-color: #ecf0f1;
+                padding: 15px;
+                border-radius: 5px; /* Borde redondeado */
+                margin-bottom: 20px;
+            }
+            .suggested-actions {
+                margin-top: 10px;
+                font-style: italic;
+                color: #7f8c8d;
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-left: 3px solid #3498db;
+            }
+            .actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .actions button {
+                background-color: #3498db; /* Color azul */
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                font-size: 16px;
+            }
+            .actions button:hover {
+                background-color: #2980b9; /* Color azul oscuro */
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">       
+        <h1>Simulador precampaña Crowdfunding</h1>
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div> 
+        <div id="DisenoValor" class="tabcontent" style="display:block;">
+            <h1>Diseño del valor y canales</h1>
+            <form id="disenoValorForm">
+                <div id="productList">
+                    <div class="product-section">
+                        <h3>Producto/Servicio/Herramienta 1</h3>
+                        <div class="form-group">
+                            <label for="producto1">Nombre del Producto/Servicio/Herramienta:</label>
+                            <input type="text" id="producto1" name="producto1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="elementosValor1">Elementos del valor:</label>
+                            <select id="elementosValor1" name="elementosValor1" required onchange="updateOptions('elementosValor', 1)">
+                                <option value="">Seleccione una opción</option>
+                                <option value="impactoSocial">Impacto social</option>
+                                <option value="transformacionPersonal">Transformación personal</option>
+                                <option value="emocionales">Emocionales</option>
+                                <option value="funcionales">Funcionales</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="opcionesElementosValor1" style="display:none;">
+                            <label for="opcionesElementosValorSelect1">Opciones de elementos del valor:</label>
+                            <select id="opcionesElementosValorSelect1" name="opcionesElementosValorSelect1">
+                                <!-- Opciones se llenarán dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="propuestaValor1">Propuesta de valor:</label>
+                            <select id="propuestaValor1" name="propuestaValor1" required onchange="updateOptions('propuestaValor', 1)">
+                                <option value="">Seleccione una opción</option>
+                                <option value="generadorBeneficio">Generador de beneficio</option>
+                                <option value="productoServicio">Producto o servicio</option>
+                                <option value="calmante">Calmante</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="opcionesPropuestaValor1" style="display:none;">
+                            <label for="opcionesPropuestaValorSelect1">Opciones de propuesta de valor:</label>
+                            <select id="opcionesPropuestaValorSelect1" name="opcionesPropuestaValorSelect1">
+                                <!-- Opciones se llenarán dinámicamente -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipoCanal1">Tipo de canal:</label>
+                            <select id="tipoCanal1" name="tipoCanal1" required onchange="updateOptions('tipoCanal', 1)">
+                                <option value="">Seleccione una opción</option>
+                                <option value="propiosDirectos">Propios y directos</option>
+                                <option value="propioIndirecto">Propio e indirecto</option>
+                                <option value="aliadoIndirecto">Aliado e indirecto</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="opcionesTipoCanal1" style="display:none;">
+                            <label for="opcionesTipoCanalSelect1">Opciones de tipo de canal:</label>
+                            <select id="opcionesTipoCanalSelect1" name="opcionesTipoCanalSelect1">
+                                <!-- Opciones se llenarán dinámicamente -->
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" onclick="addProduct()">Agregar otro producto/servicio/herramienta</button>
+            </form>
+        </div>
+        <div class="actions">
+            <button onclick="mostrarMensaje()">Guardar Parcial</button>
+            <button onclick="mostrarMensaje()">Guardar Como</button>
+            <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+        </div>
+    </div>
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+        empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    </footer>
+    <script>
+        let productCount = 1;
+
+        const optionsMap = {
+            elementosValor: {
+                impactoSocial: ['Autotrascendencia'],
+                transformacionPersonal: ['Proveedor de esperanza', 'Auto actualización', 'Motivación', 'Reliquia', 'Afiliación/ sentido de pertenencia'],
+                emocionales: ['Reduce ansiedad', 'Me premia', 'Nostalgia', 'Diseño estético', 'Credencial', 'Bienestar', 'Valor terapeútico', 'Diversión/ entretenimiento', 'Atractivo', 'Provee acceso'],
+                funcionales: ['Ahorra tiempo', 'Simplifica', 'Hace dinero', 'Organiza', 'Integra', 'Conecta', 'Reduce esfuerzo', 'Evita accidentes', 'Reduce costos', 'Calidad', 'Apela a los sentidos', 'Informa']
+            },
+            propuestaValor: {
+                generadorBeneficio: ['Maximiza', 'Ayuda', 'Evita'],
+                productoServicio: ['Sorprende', 'Facilita', 'Reduce'],
+                calmante: ['Permite', 'Tranquiliza']
+            },
+            tipoCanal: {
+                propiosDirectos: ['Fuerza de ventas, página web'],
+                propioIndirecto: ['Tiendas propias'],
+                aliadoIndirecto: ['Tiendas aliadas, distribuidores']
+            }
+        };
+
+        function updateOptions(field, productNumber) {
+            const selectedValue = document.getElementById(`${field}${productNumber}`).value;
+            const opcionesSelect = document.getElementById(`opciones${field.charAt(0).toUpperCase() + field.slice(1)}Select${productNumber}`);
+            const opcionesGroup = document.getElementById(`opciones${field.charAt(0).toUpperCase() + field.slice(1)}${productNumber}`);
+
+            opcionesSelect.innerHTML = '';
+            if (selectedValue && optionsMap[field][selectedValue]) {
+                optionsMap[field][selectedValue].forEach(option => {
+                    opcionesSelect.innerHTML += `<option value="${option}">${option}</option>`;
+                });
+                opcionesGroup.style.display = 'block';
+            } else {
+                opcionesGroup.style.display = 'none';
+            }
+        }
+
+        function addProduct() {
+            productCount++;
+            const newProductHTML = `
+                <div class="product-section">
+                    <h3>Producto/Servicio/Herramienta ${productCount}</h3>
+                    <div class="form-group">
+                        <label for="producto${productCount}">Nombre del Producto/Servicio/Herramienta:</label>
+                        <input type="text" id="producto${productCount}" name="producto${productCount}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="elementosValor${productCount}">Elementos del valor:</label>
+                        <select id="elementosValor${productCount}" name="elementosValor${productCount}" required onchange="updateOptions('elementosValor', ${productCount})">
+                            <option value="">Seleccione una opción</option>
+                            <option value="impactoSocial">Impacto social</option>
+                            <option value="transformacionPersonal">Transformación personal</option>
+                            <option value="emocionales">Emocionales</option>
+                            <option value="funcionales">Funcionales</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="opcionesElementosValor${productCount}" style="display:none;">
+                        <label for="opcionesElementosValorSelect${productCount}">Opciones de elementos del valor:</label>
+                        <select id="opcionesElementosValorSelect${productCount}" name="opcionesElementosValorSelect${productCount}">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="propuestaValor${productCount}">Propuesta de valor:</label>
+                        <select id="propuestaValor${productCount}" name="propuestaValor${productCount}" required onchange="updateOptions('propuestaValor', ${productCount})">
+                            <option value="">Seleccione una opción</option>
+                            <option value="generadorBeneficio">Generador de beneficio</option>
+                            <option value="productoServicio">Producto o servicio</option>
+                            <option value="calmante">Calmante</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="opcionesPropuestaValor${productCount}" style="display:none;">
+                        <label for="opcionesPropuestaValorSelect${productCount}">Opciones de propuesta de valor:</label>
+                        <select id="opcionesPropuestaValorSelect${productCount}" name="opcionesPropuestaValorSelect${productCount}">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipoCanal${productCount}">Tipo de canal:</label>
+                        <select id="tipoCanal${productCount}" name="tipoCanal${productCount}" required onchange="updateOptions('tipoCanal', ${productCount})">
+                            <option value="">Seleccione una opción</option>
+                            <option value="propiosDirectos">Propios y directos</option>
+                            <option value="propioIndirecto">Propio e indirecto</option>
+                            <option value="aliadoIndirecto">Aliado e indirecto</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="opcionesTipoCanal${productCount}" style="display:none;">
+                        <label for="opcionesTipoCanalSelect${productCount}">Opciones de tipo de canal:</label>
+                        <select id="opcionesTipoCanalSelect${productCount}" name="opcionesTipoCanalSelect${productCount}">
+                        </select>
+                    </div>
+                </div>
+            `;
+            document.getElementById('productList').insertAdjacentHTML('beforeend', newProductHTML);
+        }
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+
+        // Actualizar el año en el pie de página
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
