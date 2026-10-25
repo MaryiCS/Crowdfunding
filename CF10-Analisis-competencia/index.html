@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador precampaña Crowdfunding</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .menu button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover, .menu button.active {
+            background-color: #2980b9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], button, .delete-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover, button:hover, .delete-btn:hover {
+            background-color: #2980b9;
+        }
+        .competitor {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div>  
+
+        <div id="Competencia" class="tabcontent" style="display:block;">
+            <h1>Análisis de la competencia</h1>
+            <form id="analisisCompetenciaForm">
+                <div id="competidores">
+                    <!-- Los competidores se agregarán aquí dinámicamente -->
+                </div>
+                <button type="button" id="agregarCompetidor">Agregar Nuevo Competidor</button>
+            </form>
+        </div>
+        <div class="actions">
+            <button onclick="mostrarMensaje()">Guardar Parcial</button>
+            <button onclick="mostrarMensaje()">Guardar Como</button>
+            <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+        </div>
+    </div>
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+        empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    </footer>
+
+    <script>
+        let competidorCount = 0;
+
+        function crearCompetidor() {
+            competidorCount++;
+            const competidorDiv = document.createElement('div');
+            competidorDiv.className = 'competitor';
+            competidorDiv.id = `competidor${competidorCount}`;
+            competidorDiv.innerHTML = `
+                <button type="button" class="delete-btn" onclick="borrarCompetidor(${competidorCount})">Borrar</button>
+                <h3>Competidor ${competidorCount}</h3>
+                <div class="form-group">
+                    <label for="nombre${competidorCount}">Nombre:</label>
+                    <input type="text" id="nombre${competidorCount}" name="nombre${competidorCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="anos${competidorCount}">Años en el mercado:</label>
+                    <input type="text" id="anos${competidorCount}" name="anos${competidorCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="tamano${competidorCount}">Tamaño de la empresa:</label>
+                    <input type="text" id="tamano${competidorCount}" name="tamano${competidorCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="productos${competidorCount}">Productos líderes:</label>
+                    <input type="text" id="productos${competidorCount}" name="productos${competidorCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="canal${competidorCount}">Canal de ventas:</label>
+                    <input type="text" id="canal${competidorCount}" name="canal${competidorCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="publicidad${competidorCount}">Publicidad:</label>
+                    <input type="text" id="publicidad${competidorCount}" name="publicidad${competidorCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="promociones${competidorCount}">Promociones:</label>
+                    <input type="text" id="promociones${competidorCount}" name="promociones${competidorCount}" required>
+                </div>
+                <div class="form-group">
+                    <label for="fortalezas${competidorCount}">Fortalezas:</label>
+                    <textarea id="fortalezas${competidorCount}" name="fortalezas${competidorCount}" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="debilidades${competidorCount}">Debilidades:</label>
+                    <textarea id="debilidades${competidorCount}" name="debilidades${competidorCount}" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="fuentes${competidorCount}">Fuentes de información:</label>
+                    <textarea id="fuentes${competidorCount}" name="fuentes${competidorCount}" rows="5" required placeholder="Ingrese las fuentes de donde obtuvo la información para este competidor"></textarea>
+                </div>
+            `;
+            document.getElementById('competidores').appendChild(competidorDiv);
+        }
+
+        function borrarCompetidor(id) {
+            const competidor = document.getElementById(`competidor${id}`);
+            if (competidor) {
+                competidor.remove();
+            }
+        }
+
+        document.getElementById('agregarCompetidor').addEventListener('click', crearCompetidor);
+
+        document.getElementById('analisisCompetenciaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aquí iría la lógica para procesar y guardar los datos del formulario
+            console.log('Formulario enviado');
+        });
+
+        // Crear el primer competidor al cargar la página
+        crearCompetidor();
+
+        // Actualizar el año en el pie de página
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("menu button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.target.className += " active";
+        }
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+    </script>
+</body>
+</html>
