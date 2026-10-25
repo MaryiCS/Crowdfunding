@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador precampaña Crowdfunding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .menu button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover, .menu button.active {
+            background-color: #2980b9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], button, .delete-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover, button:hover, .delete-btn:hover {
+            background-color: #2980b9;
+        }
+        .profile {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: relative;
+            margin-top: auto;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div> 
+        <div id="AnalisisAudiencia" class="tabcontent" style="display:block;">
+            <h1>Análisis de Audiencia</h1>
+            <form id="analisisAudienciaForm">
+                <table id="audienciaTable">
+                    <thead>
+                        <tr>
+                            <th>Factores</th>
+                            <th>Número</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="factoresBody">
+                        <!-- Las filas se generarán dinámicamente con JavaScript -->
+                    </tbody>
+                </table>
+                <button type="button" id="addFactorBtn">Agregar Factor</button>
+                <button type="button" id="restoreFactorsBtn">Restaurar Factores Originales</button>
+                <h3>Enlaces a redes sociales del proyecto</h3>
+                <div id="socialLinks"></div>
+                <button type="button" id="addSocialLinkBtn">Agregar Enlace de Red Social</button>
+                <h3>Observaciones o compromisos</h3>
+                <textarea name="observaciones" rows="4" placeholder="P.ej: Aumentar en 10% la participación del proyecto en redes sociales/ Integrar una red en particular/ Crear dos (2) segmentos de contenido semanales"></textarea>
+            </form>
+        </div>
+        <div class="actions">
+            <button onclick="mostrarMensaje()">Guardar Parcial</button>
+            <button onclick="mostrarMensaje()">Guardar Como</button>
+            <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+        </div>
+    </div>
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+        empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    </footer>
+
+    <script>
+        const originalFactors = [
+            "Número de personas en base de datos",
+            "Número de seguidores en redes sociales",
+            "Número de usuarios/as actuales de nuestros servicios",
+            "Voluntarios/as",
+            "Colaboradores actuales"
+        ];
+
+        function addFactor(factor = '') {
+            const tbody = document.getElementById('factoresBody');
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td>${factor || '<input type="text" placeholder="Nuevo factor">'}</td>
+                <td><input type="number" required></td>
+                <td><button type="button" onclick="this.closest('tr').remove()">Borrar</button></td>
+            `;
+        }
+
+        function restoreFactors() {
+            const tbody = document.getElementById('factoresBody');
+            tbody.innerHTML = '';
+            originalFactors.forEach(factor => addFactor(factor));
+        }
+
+        function addSocialLink() {
+            const socialLinks = document.getElementById('socialLinks');
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <input type="text" placeholder="Nombre de la red social">
+                <input type="url" placeholder="URL del perfil">
+                <button type="button" onclick="this.parentElement.remove()">Borrar</button>
+            `;
+            socialLinks.appendChild(div);
+        }
+
+        document.getElementById('addFactorBtn').onclick = () => addFactor();
+        document.getElementById('restoreFactorsBtn').onclick = restoreFactors;
+        document.getElementById('addSocialLinkBtn').onclick = addSocialLink;
+
+        document.getElementById('analisisAudienciaForm').onsubmit = function(e) {
+            e.preventDefault();
+            console.log('Formulario enviado');
+        };
+
+        // Inicializar la tabla y el año
+        restoreFactors();
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function openTab(evt, tabName) {
+            console.log(`Abriendo pestaña: ${tabName}`);
+        }
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+    </script>
+</body>
+</html>
