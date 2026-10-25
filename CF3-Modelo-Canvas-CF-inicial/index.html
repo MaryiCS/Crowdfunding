@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador precampaña Crowdfunding</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                overflow: hidden;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                flex: 1;
+            }
+            h1, h2, h3 {
+                color: #2c3e50;
+            }
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .menu a, .menu button {
+                display: inline-block;
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                text-decoration: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .menu a:hover, .menu button:hover {
+                background-color: #2980b9;
+            }
+            .menu a.active {
+                background-color: #2980b9;
+            }
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            input[type="text"], textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px; /* Borde redondeado */
+                box-sizing: border-box;
+            }
+            input[type="submit"] {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                font-size: 16px;
+            }
+            input[type="submit"]:hover {
+                background-color: #2980b9;
+            }
+            .error {
+                color: #e74c3c;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            footer {
+                background-color: #2c3e50;
+                color: #ecf0f1;
+                text-align: center;
+                padding: 10px 0;
+                width: 100%;
+            }
+            .explanation {
+                font-size: 0.9em;
+                color: #7f8c8d;
+                margin-top: 5px;
+                margin-bottom: 15px;
+            }
+            .actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .actions button {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                font-size: 16px;
+            }
+            .actions button:hover {
+                background-color: #2980b9;
+            }
+        </style>
+    </head>
+    
+    
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div> 
+
+        <div id="ModeloNegocio" class="tabcontent" style="display:block;">
+            <h1>Modelo de Negocio</h1>
+
+            <form id="modeloNegocioForm">
+                <div class="form-group">
+                    <h3>a. Descripción de la iniciativa</h3>
+                    <p class="explanation">Mensaje corto, Descripción, ¿Cómo funciona?, Transparencia/por qué un crowdfunding (gastos, colaboración, dar a conocer), Plazos, entregas de recompensas, Equipo, Apariciones en medios</p>
+                    <textarea id="descripcionIniciativa" name="descripcionIniciativa" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <h3>b. Mecenas</h3>
+                    <p class="explanation">30% 1ra semana (identificar y cuantificar): Amigos, Familiares, Fans/seguidores, Early adopters, Cliente tipo, Ingresos, Edad, Género, Clase Social, Escolaridad, Ocupación, Mecenas grupales, Gustos y Preferencias de un grupo determinado de personas, Colaboradores/participantes, Aspiraciones, Dolores, Beneficios, Frecuencia de Uso, Etapa de Preparación, Actitud hacia el producto, Empresas patrocinadoras, Descripción de empresas patrocinadoras, otros</p>
+                    <textarea id="mecenas" name="mecenas" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <h3>c. Canales</h3>
+                    <p class="explanation">Para el 1er 30%, Creación de comunidad en Redes sociales, Evento (previo de feedback y de presentación), Mailing, Correo, Nota de prensa, ¿Whatsapp? ¿Telegram?, Prescriptores, Medios, Blogueros, Asociaciones interesadas, Famosos/reconocidos, Identidad visual y otros medios, Logotipo, Prototipo, Web/landing page, Vídeo, Diseño visual para plataforma (plazos, infografías), Otro</p>
+                    <textarea id="canales" name="canales" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <h3>d. Ventaja competitiva injusta</h3>
+                    <p class="explanation">(Razones para ser mecenas durante el Crowdfunding, "ahora o nunca"), Precio, Exclusividad, Colaboración, Otros. ¿Cuáles?</p>
+                    <textarea id="ventajaCompetitiva" name="ventajaCompetitiva" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <h3>e. Métricas clave</h3>
+                    <p class="explanation">Mínimo a Recaudar, Óptimo a Recaudar, Ideal a Recaudar, 30% 1ra semana, Margen por recompensa estrella, Número de Mecenas, Visitas, Plazo, Fecha comienzo, Otro</p>
+                    <textarea id="metricasClave" name="metricasClave" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <h3>f. Problema/ Solución</h3>
+                    <p class="explanation">3 problemas detectados / Oportunidades de negocio, Solución (el qué), Para qué, Para quién, Otros</p>
+                    <textarea id="problemaSolucion" name="problemaSolucion" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <h3>g. Legalidad</h3>
+                    <p class="explanation">Impuestos, Seguridad social, Pasarelas de pago, Comisión en plataformas, Protección de datos, Aviso legal de plataforma, Otro</p>
+                    <textarea id="legalidad" name="legalidad" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <h3>h. Costos</h3>
+                    <p class="explanation">Diseño gráfico, Web, Vídeo Comunicación/Prensa Asesoría/s, Liquidez mínima, Liquidez óptima, Liquidez ideal, Recompensa: -Fabricación -Envío -Impuestos -Margen, Comisiones -Plataforma -Plataforma, interés bancario- cambio de divisas-, Otro</p>
+                    <textarea id="costos" name="costos" rows="6" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <h3>i. Ingresos</h3>
+                    <p class="explanation">Donativos, Digitales, Mercadeo, Early adopters, Estándar, Relacionadas, Experiencias, Patrocinios, Otro</p>
+                    <textarea id="ingresos" name="ingresos" rows="6" required></textarea>
+
+        <!-- Otros componentes irán aquí -->
+
+    </div>
+    <div class="actions">
+        <button onclick="mostrarMensaje()">Guardar Parcial</button>
+        <button onclick="mostrarMensaje()">Guardar Como</button>
+        <a href="https://maryics.github.io/MaryicsCrowd/" target="_blank"><button>Regresar al Menú Principal</button></a>
+    </div>
+</div>
+<footer>
+    Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    
+  </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("menu button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.target.className += " active";
+        }
+
+        document.getElementById('modeloNegocioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validar campos obligatorios
+            const requiredFields = document.querySelectorAll('#modeloNegocioForm [required]');
+            let isValid = true;
+            requiredFields.forEach(field => {
+                if (!field.value) {
+                    isValid = false;
+                    field.style.borderColor = '#e74c3c';
+                    if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('error')) {
+                        const error = document.createElement('div');
+                        error.className = 'error';
+                        error.textContent = 'Este campo es obligatorio';
+                        field.parentNode.insertBefore(error, field.nextSibling);
+                    }
+                } else {
+                    field.style.borderColor = '';
+                    if (field.nextElementSibling && field.nextElementSibling.classList.contains('error')) {
+                        field.nextElementSibling.remove();
+                    }
+                }
+            });
+
+            if (isValid) {
+                // Aquí puedes añadir el código para guardar los datos
+                console.log('Formulario del Modelo de Negocio válido, datos guardados');
+                
+                // Cambiar a la siguiente pestaña
+                document.querySelector('.menu button:nth-child(4)').click();
+            }
+        });
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+
+        // Actualizar el año en el pie de página
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
