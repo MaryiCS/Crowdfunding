@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador precampaña Crowdfunding</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .menu button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover, .menu button.active {
+            background-color: #2980b9;
+        }
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], .add-member-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover, .add-member-btn:hover {
+            background-color: #2980b9;
+        }
+        .error {
+            color: #e74c3c;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+        .team-member {
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .team-member h3 {
+            margin-top: 0;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .explanation {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .actions button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .actions button:hover {
+            background-color: #2980b9;
+        }
+        .actions a {
+            text-decoration: none;
+        }
+        .actions a button {
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div> 
+    </div>
+</body>
+</html>
+
+<body>
+    <div class="container">
+        <h1>Descripción del Equipo</h1>
+        
+        <div id="Equipo" class="tabcontent" style="display:block;">
+
+            <form id="equipoForm">
+                <div class="form-group">
+                    <label for="nombrePropuesta">Nombre de la propuesta:</label>
+                    <input type="text" id="nombrePropuesta" name="nombrePropuesta" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipoEmprendimiento">Tipo de emprendimiento propuesto:</label>
+                    <select id="tipoEmprendimiento" name="tipoEmprendimiento" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="tecnologica">Emprendimiento de Base Tecnológica</option>
+                        <option value="social">Emprendimiento de base social</option>
+                        <option value="cultural">Emprendimiento de base cultural y creativa</option>
+                        <option value="abierta">Emprendimiento de base abierta</option>
+                    </select>
+                </div>
+
+                <div id="teamMembers">
+                    <div class="team-member">
+                        <h3>Integrante del Equipo 1 (Obligatorio)</h3>
+                        <div class="form-group">
+                            <label for="nombreIntegrante1">Nombre del integrante:</label>
+                            <input type="text" id="nombreIntegrante1" name="nombreIntegrante1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="programa1">Programa al que pertenece:</label>
+                            <input type="text" id="programa1" name="programa1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="perfilPublico1">Perfil público (LinkedIn, Facebook, Instagram):</label>
+                            <input type="text" id="perfilPublico1" name="perfilPublico1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experto1">¿Es experto en el proyecto que estás formulando?</label>
+                            <select id="experto1" name="experto1" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rol1">Selecciona un rol:</label>
+                            <select id="rol1" name="rol1" required>
+                                <option value="">Seleccione una opción</option>
+                                <option value="desarrollador">Desarrollador de clientes</option>
+                                <option value="ingeniero">Ingeniero</option>
+                                <option value="disenador">Diseñador de producto</option>
+                                <option value="visionario">Visionario</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="addMember" class="add-member-btn">Añadir otro integrante</button>
+
+
+                <div class="actions">
+                    <button onclick="mostrarMensaje()">Guardar Parcial</button>
+                    <button onclick="mostrarMensaje()">Guardar Como</button>
+                    <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+    empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+        
+      </footer>
+
+    <script>
+        let memberCount = 1;
+
+        document.getElementById('addMember').addEventListener('click', function() {
+            if (memberCount < 5) {
+                memberCount++;
+                const newMember = `
+                    <div class="team-member">
+                        <h3>Integrante del Equipo ${memberCount}</h3>
+                        <div class="form-group">
+                            <label for="nombreIntegrante${memberCount}">Nombre del integrante:</label>
+                            <input type="text" id="nombreIntegrante${memberCount}" name="nombreIntegrante${memberCount}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="programa${memberCount}">Programa al que pertenece:</label>
+                            <input type="text" id="programa${memberCount}" name="programa${memberCount}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="perfilPublico${memberCount}">Perfil público (LinkedIn, Facebook, Instagram):</label>
+                            <input type="text" id="perfilPublico${memberCount}" name="perfilPublico${memberCount}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="experto${memberCount}">¿Es experto en el proyecto que estás formulando?</label>
+                            <select id="experto${memberCount}" name="experto${memberCount}">
+                                <option value="">Seleccione una opción</option>
+                                <option value="si">Sí</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rol${memberCount}">Selecciona un rol:</label>
+                            <select id="rol${memberCount}" name="rol${memberCount}">
+                                <option value="">Seleccione una opción</option>
+                                <option value="desarrollador">Desarrollador de clientes</option>
+                                <option value="ingeniero">Ingeniero</option>
+                                <option value="disenador">Diseñador de producto</option>
+                                <option value="visionario">Visionario</option>
+                            </select>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('teamMembers').insertAdjacentHTML('beforeend', newMember);
+            }
+            if (memberCount === 5) {
+                document.getElementById('addMember').style.display = 'none';
+            }
+        });
+
+        document.getElementById('equipoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validar campos obligatorios
+            const requiredFields = document.querySelectorAll('#equipoForm [required]');
+            let isValid = true;
+            requiredFields.forEach(field => {
+                if (!field.value) {
+                    isValid = false;
+                    field.style.borderColor = '#e74c3c';
+                    if (!field.nextElementSibling || !field.nextElementSibling.classList.contains('error')) {
+                        const error = document.createElement('div');
+                        error.className = 'error';
+                        error.textContent = 'Este campo es obligatorio';
+                        field.parentNode.insertBefore(error, field.nextSibling);
+                    }
+                } else {
+                    field.style.borderColor = '';
+                    if (field.nextElementSibling && field.nextElementSibling.classList.contains('error')) {
+                        field.nextElementSibling.remove();
+                    }
+                }
+            });
+
+            if (isValid) {
+                // Aquí puedes añadir el código para guardar los datos
+                alert('Formulario enviado correctamente');
+            }
+        });
+        function mostrarMensaje() {
+        alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+    }
+        
+    </script>
+</body>
+</html>
