@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador precampaña Crowdfunding</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                overflow: hidden;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                flex: 1;
+            }
+            h1, h2, h3 {
+                color: #2c3e50;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            input[type="number"], input[type="text"], textarea, select {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            input[type="submit"], button {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+            input[type="submit"]:hover, button:hover {
+                background-color: #2980b9;
+            }
+            .result {
+                margin-top: 10px;
+                padding: 10px;
+                background-color: #e9e9e9;
+            }
+            .checklist {
+                list-style-type: none;
+                padding: 0;
+            }
+            .checklist li {
+                margin-bottom: 10px;
+            }
+            .checklist input[type="checkbox"] {
+                margin-right: 10px;
+            }
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .menu button {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .menu button:hover, .menu button.active {
+                background-color: #2980b9;
+            }
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            .error {
+                color: #e74c3c;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            footer {
+                background-color: #2c3e50;
+                color: #ecf0f1;
+                text-align: center;
+                padding: 10px 0;
+                width: 100%;
+                margin-top: auto;
+            }
+            .discovery-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            .discovery-item {
+                background-color: #ecf0f1;
+                padding: 15px;
+                border-radius: 5px;
+            }
+            .importance-select {
+                margin-top: 5px;
+            }
+            .actions {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+            .actions button {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .actions button:hover {
+                background-color: #2980b9;
+            }
+        </style>
+    </head>
+    
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div>  
+
+<body>
+    <div class="container">
+        <h1>Indicadores</h1>
+
+        <!-- LTV Section -->
+        <h2>LTV (Lifetime Value)</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Valor venta promedio</td>
+                <td><input type="number" id="valor_venta" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Número de transacciones</td>
+                <td><input type="number" id="num_transacciones" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Períodos en los que es cliente</td>
+                <td><input type="number" id="periodos_cliente" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Total LTV</td>
+                <td class="result" id="total_ltv"></td>
+            </tr>
+        </table>
+
+        <!-- CAC Section -->
+        <h2>CAC (Customer Acquisition Cost)</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Gastos en ventas</td>
+                <td><input type="number" id="gastos_ventas" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Nuevos usuarios</td>
+                <td><input type="number" id="nuevos_usuarios" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Total CAC</td>
+                <td class="result" id="total_cac"></td>
+            </tr>
+        </table>
+
+        <!-- Runaway Section -->
+        <h2>Runaway</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Dinero disponible</td>
+                <td><input type="number" id="dinero_disponible" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Gasto mensual</td>
+                <td><input type="number" id="gasto_mensual" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Total Runaway (meses)</td>
+                <td class="result" id="total_runaway"></td>
+            </tr>
+        </table>
+
+        <!-- Monthly Burn Section -->
+        <h2>Monthly Burn</h2>
+        <table id="monthly_burn_table">
+            <tr>
+                <th>Gasto</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Gasto 1</td>
+                <td><input type="number" class="gasto" oninput="calcularTodo()"></td>
+            </tr>
+        </table>
+        <button onclick="agregarGasto()">Agregar Gasto</button>
+        <p>Total Monthly Burn: <span class="result" id="total_monthly_burn"></span></p>
+
+        <!-- New Sections -->
+         
+        <h2>Proxies de tracción</h2>
+        <table>
+            <tr>
+                <th>Métrica</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Registros</td>
+                <td><input type="number" id="registros"></td>
+            </tr>
+            <tr>
+                <td>Usuarios activos</td>
+                <td><input type="number" id="usuarios_activos"></td>
+            </tr>
+            <tr>
+                <td>Alianzas</td>
+                <td><input type="number" id="alianzas"></td>
+            </tr>
+            <tr>
+                <td>Tráfico</td>
+                <td><input type="number" id="trafico"></td>
+            </tr>
+        </table>
+
+        <h2>Tamaño del mercado</h2>
+        <input type="number" id="tamano_mercado" placeholder="Dinero que mueve este negocio en un sector determinado">
+
+        <h2>MRR (Monthly Recurring Revenue)</h2>
+        <input type="number" id="mrr" placeholder="¿Cuánto de tu ingreso mensual es constante y predecible mes a mes?">
+        <h2>RGR (Revenue Growth Rate)</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Ingreso mes 1</td>
+                <td><input type="number" id="ingreso_mes_1" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Ingreso mes 0</td>
+                <td><input type="number" id="ingreso_mes_0" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Total RGR</td>
+                <td class="result" id="total_rgr"></td>
+            </tr>
+        </table>       
+        
+        <h2>Customer Retention Rate</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Clientes al final del mes</td>
+                <td><input type="number" id="clientes_final" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Nuevos clientes</td>
+                <td><input type="number" id="nuevos_clientes_retention" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Clientes al principio de mes</td>
+                <td><input type="number" id="clientes_inicio" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Customer Retention Rate</td>
+                <td class="result" id="customer_retention_rate"></td>
+            </tr>
+        </table>       
+        
+        <h2>Gross Margin</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Ingresos</td>
+                <td><input type="number" id="ingresos_gm" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Costos</td>
+                <td><input type="number" id="costos_gm" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Gross Margin</td>
+                <td class="result" id="gross_margin"></td>
+            </tr>
+        </table>
+        
+        <h2>MAU (Monthly Active Users)</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Usuarios activos durante el mes</td>
+                <td><input type="number" id="usuarios_activos_mes" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Total de usuarios en el mes</td>
+                <td><input type="number" id="total_usuarios_mes" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>MAU</td>
+                <td class="result" id="mau"></td>
+            </tr>
+        </table>
+
+        <h2>Rate Conversion</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Usuarios que compran</td>
+                <td><input type="number" id="usuarios_compran" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Total de prospectos/clics/impresiones</td>
+                <td><input type="number" id="total_prospectos" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Rate Conversion</td>
+                <td class="result" id="rate_conversion"></td>
+            </tr>
+        </table>
+
+        <h2>ARPU (Average Revenue Per User)</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Ingreso total generado en un período</td>
+                <td><input type="number" id="ingreso_total_periodo" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Número de usuarios en ese período</td>
+                <td><input type="number" id="num_usuarios_periodo" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>ARPU</td>
+                <td class="result" id="arpu"></td>
+            </tr>
+        </table>
+
+        <h2>Operating Margin</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Utilidad bruta</td>
+                <td><input type="number" id="utilidad_bruta" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Gastos de operación y ventas</td>
+                <td><input type="number" id="gastos_operacion" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Ingresos</td>
+                <td><input type="number" id="ingresos_om" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Operating Margin</td>
+                <td class="result" id="operating_margin"></td>
+            </tr>
+        </table>
+        
+        <h2>Breakeven Analysis</h2>
+        <table>
+            <tr>
+                <th>Componente</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Costos y gastos fijos</td>
+                <td><input type="number" id="costos_fijos" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Precio de venta unitario</td>
+                <td><input type="number" id="precio_venta" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Costo variable unitario</td>
+                <td><input type="number" id="costo_variable" oninput="calcularTodo()"></td>
+            </tr>
+            <tr>
+                <td>Total Breakeven (unidades)</td>
+                <td class="result" id="breakeven"></td>
+            </tr>
+        </table>
+    
+    </div>
+    <div class="actions">
+        <button onclick="mostrarMensaje()">Guardar Parcial</button>
+        <button onclick="mostrarMensaje()">Guardar Como</button>
+        <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+    </div>
+</div>
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+        empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    </footer>
+    <script>
+        function calcularTodo() {
+            // LTV
+            const valorVenta = parseFloat(document.getElementById('valor_venta').value) || 0;
+            const numTransacciones = parseFloat(document.getElementById('num_transacciones').value) || 0;
+            const periodosCliente = parseFloat(document.getElementById('periodos_cliente').value) || 0;
+            const ltv = valorVenta * numTransacciones * periodosCliente;
+            document.getElementById('total_ltv').textContent = formatearMoneda(ltv);
+
+            // CAC
+            const gastosVentas = parseFloat(document.getElementById('gastos_ventas').value) || 0;
+            const nuevosUsuarios = parseFloat(document.getElementById('nuevos_usuarios').value) || 1;
+            const cac = gastosVentas / nuevosUsuarios;
+            document.getElementById('total_cac').textContent = formatearMoneda(cac);
+
+            // Runaway
+            const dineroDisponible = parseFloat(document.getElementById('dinero_disponible').value) || 0;
+            const gastoMensual = parseFloat(document.getElementById('gasto_mensual').value) || 1;
+            const runaway = dineroDisponible / gastoMensual;
+            document.getElementById('total_runaway').textContent = formatearNumero(runaway);
+
+            // Monthly Burn
+            let totalBurn = 0;
+            document.querySelectorAll('.gasto').forEach(input => {
+                totalBurn += parseFloat(input.value) || 0;
+            });
+            document.getElementById('total_monthly_burn').textContent = formatearMoneda(totalBurn);
+
+            // RGR
+            const ingresoMes1 = parseFloat(document.getElementById('ingreso_mes_1').value) || 0;
+            const ingresoMes0 = parseFloat(document.getElementById('ingreso_mes_0').value) || 1;
+            const rgr = ((ingresoMes1 - ingresoMes0) / ingresoMes0) * 100;
+            document.getElementById('total_rgr').textContent = formatearPorcentaje(rgr);
+
+            // Customer Retention Rate
+            const clientesFinal = parseFloat(document.getElementById('clientes_final').value) || 0;
+            const nuevosClientesRetention = parseFloat(document.getElementById('nuevos_clientes_retention').value) || 0;
+            const clientesInicio = parseFloat(document.getElementById('clientes_inicio').value) || 1;
+            const retentionRate = (((clientesFinal - nuevosClientesRetention) - clientesInicio) / clientesInicio) * 100;
+            document.getElementById('customer_retention_rate').textContent = formatearPorcentaje(retentionRate);
+
+            // Gross Margin
+            const ingresosGM = parseFloat(document.getElementById('ingresos_gm').value) || 0;
+            const costosGM = parseFloat(document.getElementById('costos_gm').value) || 1; // Evitar división por cero
+            const grossMargin = ((ingresosGM - costosGM) / ingresosGM) * 100;
+            document.getElementById('gross_margin').textContent = formatearPorcentaje(grossMargin);
+
+            // MAU
+            const usuariosActivos = parseFloat(document.getElementById('usuarios_activos_mes').value) || 0;
+            const totalUsuarios = parseFloat(document.getElementById('total_usuarios_mes').value) || 1;
+            const mau = (usuariosActivos / totalUsuarios) * 100;
+            document.getElementById('mau').textContent = formatearPorcentaje(mau);
+
+            // Rate Conversion
+            const usuariosCompran = parseFloat(document.getElementById('usuarios_compran').value) || 0;
+            const totalProspectos = parseFloat(document.getElementById('total_prospectos').value) || 1;
+            const rateConversion = (usuariosCompran / totalProspectos) * 100;
+            document.getElementById('rate_conversion').textContent = formatearPorcentaje(rateConversion);
+
+            // ARPU
+            const ingresoTotalPeriodo = parseFloat(document.getElementById('ingreso_total_periodo').value) || 0;
+            const numUsuariosPeriodo = parseFloat(document.getElementById('num_usuarios_periodo').value) || 1;
+            const arpu = ingresoTotalPeriodo / numUsuariosPeriodo;
+            document.getElementById('arpu').textContent = formatearMoneda(arpu);
+
+            // Operating Margin
+            const utilidadBruta = parseFloat(document.getElementById('utilidad_bruta').value) || 0;
+            const gastosOperacion = parseFloat(document.getElementById('gastos_operacion').value) || 0;
+            const ingresosOM = parseFloat(document.getElementById('ingresos_om').value) || 1;
+            const operatingMargin = ((utilidadBruta - gastosOperacion) / ingresosOM) * 100;
+            document.getElementById('operating_margin').textContent = formatearPorcentaje(operatingMargin);
+
+            // Breakeven Analysis
+            const costosFijos = parseFloat(document.getElementById('costos_fijos').value) || 0;
+            const precioVenta = parseFloat(document.getElementById('precio_venta').value) || 0;
+            const costoVariable = parseFloat(document.getElementById('costo_variable').value) || 0;
+            const breakeven = costosFijos / (precioVenta - costoVariable);
+            document.getElementById('breakeven').textContent = formatearNumero(breakeven);
+        }
+
+        function formatearMoneda(numero) {
+            return new Intl.NumberFormat('es-CO', { 
+                style: 'currency', 
+                currency: 'COP', 
+                minimumFractionDigits: 0, 
+                maximumFractionDigits: 0 
+            }).format(numero);
+        }
+
+        function formatearNumero(numero) {
+            return new Intl.NumberFormat('es-CO', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            }).format(numero);
+        }
+
+        function formatearPorcentaje(numero) {
+            return new Intl.NumberFormat('es-CO', { 
+                style: 'percent', 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            }).format(numero / 100);
+        }
+
+        // Agregar event listeners a todos los inputs para cálculos automáticos
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input[type="number"], input[type="text"]');
+            inputs.forEach(input => {
+                input.addEventListener('input', calcularTodo);
+            });
+
+            // Llamar a calcularTodo inicialmente para mostrar los resultados con los valores por defecto
+            calcularTodo();
+        });
+
+        // Función para agregar nuevos gastos
+        function agregarGasto() {
+            const table = document.getElementById('monthly_burn_table');
+            const newRow = table.insertRow(-1);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            cell1.textContent = `Gasto ${table.rows.length}`;
+            const newInput = document.createElement('input');
+            newInput.type = 'number';
+            newInput.className = 'gasto';
+            newInput.addEventListener('input', calcularTodo);
+            cell2.appendChild(newInput);
+            calcularTodo();
+        }
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+    </script>
+</body>
+</html>
