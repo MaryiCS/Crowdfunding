@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador precampaña Crowdfunding</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                background-color: #f4f4f4;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .container {
+                max-width: 1200px;
+                margin: auto;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                flex: 1;
+            }
+            h1, h2, h3 {
+                color: #2c3e50;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            input[type="number"], input[type="text"], textarea, select {
+                width: 100px;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            .total {
+                font-weight: bold;
+            }
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .menu button {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .menu button:hover, .menu button.active {
+                background-color: #2980b9;
+            }
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            input[type="submit"], button, .delete-btn, .restore-btn {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+            }
+            input[type="submit"]:hover, button:hover, .delete-btn:hover, .restore-btn:hover {
+                background-color: #2980b9;
+            }
+            .error {
+                color: #e74c3c;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            .discovery-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            .discovery-item {
+                background-color: #ecf0f1;
+                padding: 15px;
+                border-radius: 5px;
+            }
+            .importance-select {
+                margin-top: 5px;
+            }
+            .actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            footer {
+                background-color: #2c3e50;
+                color: #ecf0f1;
+                text-align: center;
+                padding: 10px 0;
+                width: 100%;
+                margin-top: auto;
+            }
+        </style>
+    </head>
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div>  
+
+<body>
+    <div class="container">
+        <h1>Objetivos de Recaudación</h1>
+        
+        <div>
+            <label for="moneda">Seleccione la moneda:</label>
+            <select id="moneda" onchange="calcular()">
+                <option value="COP">Pesos colombianos (COP)</option>
+                <option value="USD">Dólares estadounidenses (USD)</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="costos">Costos de campaña:</label>
+            <input type="number" id="costos" value="1000000" onchange="calcular()">
+        </div>
+
+        <div>
+            <label for="unidadesTotales">Unidades totales a producir:</label>
+            <input type="number" id="unidadesTotales" value="80" onchange="calcular()">
+        </div>
+        
+        <h2>Objetivos de Recaudación</h2>
+        <table id="objetivosTable">
+            <tr>
+                <th>Concepto</th>
+                <th>Porcentaje</th>
+                <th>Total</th>
+            </tr>
+            <tr>
+                <td>Primera semana de recaudación</td>
+                <td>30%</td>
+                <td id="primeraSemana"></td>
+            </tr>
+            <tr>
+                <td colspan="3"><strong>MARGEN DE SEGURIDAD</strong></td>
+            </tr>
+            <tr>
+                <td>Bajo</td>
+                <td>5%</td>
+                <td id="margenBajo"></td>
+            </tr>
+            <tr>
+                <td>Medio</td>
+                <td>10%</td>
+                <td id="margenMedio"></td>
+            </tr>
+            <tr>
+                <td>Óptimo</td>
+                <td>15%</td>
+                <td id="margenOptimo"></td>
+            </tr>
+            <tr>
+                <td>Alto</td>
+                <td>20%</td>
+                <td id="margenAlto"></td>
+            </tr>
+        </table>
+        
+        <h2>Meta de Recaudación</h2>
+        <table id="metaRecaudacionTable">
+            <tr>
+                <th>Meta</th>
+                <th>Total</th>
+                <th>Primera semana</th>
+            </tr>
+            <tr>
+                <td>Meta de recaudación - Margen bajo (M1)</td>
+                <td id="metaBajaTotal"></td>
+                <td id="metaBajaPrimeraSemana"></td>
+            </tr>
+            <tr>
+                <td>Meta de recaudación - Margen medio (M2)</td>
+                <td id="metaMediaTotal"></td>
+                <td id="metaMediaPrimeraSemana"></td>
+            </tr>
+            <tr>
+                <td>Meta de recaudación - Margen óptimo (M3)</td>
+                <td id="metaOptimaTotal"></td>
+                <td id="metaOptimaPrimeraSemana"></td>
+            </tr>
+            <tr>
+                <td>Meta de recaudación - Margen alto (M4)</td>
+                <td id="metaAltaTotal"></td>
+                <td id="metaAltaPrimeraSemana"></td>
+            </tr>
+        </table>
+        
+        <h2>Unidades y Precios</h2>
+        <table id="unidadesPreciosTable">
+            <tr>
+                <th>Grupo</th>
+                <th>Porcentaje</th>
+                <th>Unidades</th>
+                <th>Precio</th>
+                <th>Total</th>
+                <th>M1</th>
+                <th>M2</th>
+                <th>M3</th>
+                <th>M4</th>
+            </tr>
+            <tr>
+                <td>Grupo 1</td>
+                <td><input type="number" id="porcentajeGrupo1" value="30" onchange="calcular()" disabled></td>
+                <td id="unidadesGrupo1"></td>
+                <td><input type="number" id="precioGrupo1" value="1000" onchange="calcular()"></td>
+                <td id="totalGrupo1"></td>
+                <td id="m1Grupo1"></td>
+                <td id="m2Grupo1"></td>
+                <td id="m3Grupo1"></td>
+                <td id="m4Grupo1"></td>
+            </tr>
+            <tr>
+                <td>Grupo 2</td>
+                <td><input type="number" id="porcentajeGrupo2" value="35" onchange="calcular()"></td>
+                <td id="unidadesGrupo2"></td>
+                <td><input type="number" id="precioGrupo2" value="1500" onchange="calcular()"></td>
+                <td id="totalGrupo2"></td>
+                <td id="m1Grupo2"></td>
+                <td id="m2Grupo2"></td>
+                <td id="m3Grupo2"></td>
+                <td id="m4Grupo2"></td>
+            </tr>
+            <tr>
+                <td>Grupo 3</td>
+                <td><input type="number" id="porcentajeGrupo3" value="35" onchange="calcular()"></td>
+                <td id="unidadesGrupo3"></td>
+                <td><input type="number" id="precioGrupo3" value="2000" onchange="calcular()"></td>
+                <td id="totalGrupo3"></td>
+                <td id="m1Grupo3"></td>
+                <td id="m2Grupo3"></td>
+                <td id="m3Grupo3"></td>
+                <td id="m4Grupo3"></td>
+            </tr>
+            <tr class="total">
+                <td>Total</td>
+                <td id="porcentajeTotal">100%</td>
+                <td id="unidadesTotal"></td>
+                <td></td>
+                <td id="granTotal"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <button onclick="agregarGrupo()">Agregar Grupo</button>
+        <h2>Expectativas de Donación</h2>
+        <table id="expectativasTable">
+            <tr>
+                <td>Es probable que cada persona done</td>
+                <td><input type="number" id="donacionProbable" value="200000" onchange="calcular()"></td>
+            </tr>
+            <tr>
+                <td>Precio del dólar hoy</td>
+                <td><input type="number" id="precioDolar" value="4000" onchange="calcular()"></td>
+            </tr>
+            <tr>
+                <td>La donación unitaria equivale en dólares a</td>
+                <td id="donacionUnitariaDolares"></td>
+            </tr>
+            <tr>
+                <td>Aproximadamente 1 de cada X personas de las contactadas, decida contribuir a este monto</td>
+                <td><input type="number" id="proporcionContribucion" value="20" onchange="calcular()"></td>
+            </tr>
+        </table>  
+        <h2>Supuestos</h2>
+        <table id="supuestosTable">
+            <tr>
+                <th>Supuestos</th>
+                <th>M1</th>
+                <th>M2</th>
+                <th>M3</th>
+                <th>M4</th>
+            </tr>
+            <tr>
+                <td>Meta de recaudo</td>
+                <td id="metaRecaudoM1"></td>
+                <td id="metaRecaudoM2"></td>
+                <td id="metaRecaudoM3"></td>
+                <td id="metaRecaudoM4"></td>
+            </tr>
+            <tr>
+                <td>Equivale en dólares a</td>
+                <td id="equivalenteDolaresM1"></td>
+                <td id="equivalenteDolaresM2"></td>
+                <td id="equivalenteDolaresM3"></td>
+                <td id="equivalenteDolaresM4"></td>
+            </tr>
+            <tr>
+                <td>Personas que deberían aportar</td>
+                <td id="personasAportantesM1"></td>
+                <td id="personasAportantesM2"></td>
+                <td id="personasAportantesM3"></td>
+                <td id="personasAportantesM4"></td>
+            </tr>
+            <tr>
+                <td>Total de personas a contactar</td>
+                <td id="personasContactarM1"></td>
+                <td id="personasContactarM2"></td>
+                <td id="personasContactarM3"></td>
+                <td id="personasContactarM4"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="actions">
+        <button onclick="mostrarMensaje()">Guardar Parcial</button>
+        <button onclick="mostrarMensaje()">Guardar Como</button>
+        <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+    </div>
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+        empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    </footer>
+    <script>
+        let grupoCount = 3;
+        let monedaActual = 'COP';
+        const formatoMoneda = {
+            'COP': { estilo: 'currency', moneda: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 },
+            'USD': { estilo: 'currency', moneda: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }
+        };
+
+        function formatearMoneda(valor) {
+            return new Intl.NumberFormat('es-CO', formatoMoneda[monedaActual]).format(valor);
+        }
+
+        function formatearNumero(valor) {
+            return new Intl.NumberFormat('es-CO', { minimumFractionDigits: 3, maximumFractionDigits: 3 }).format(valor);
+        }
+
+        function calcular() {
+            monedaActual = document.getElementById('moneda').value;
+            const costos = parseFloat(document.getElementById('costos').value) || 0;
+            const unidadesTotales = parseInt(document.getElementById('unidadesTotales').value) || 0;
+            const precioDolar = parseFloat(document.getElementById('precioDolar').value) || 1;
+            const donacionProbable = parseFloat(document.getElementById('donacionProbable').value) || 1;
+            const proporcionContribucion = parseFloat(document.getElementById('proporcionContribucion').value) || 1;
+
+            // Cálculo de objetivos de recaudación
+            const primeraSemana = costos * 0.3;
+            document.getElementById('primeraSemana').textContent = formatearMoneda(primeraSemana);
+
+            const margenBajo = costos * 0.05;
+            const margenMedio = costos * 0.10;
+            const margenOptimo = costos * 0.15;
+            const margenAlto = costos * 0.20;
+
+            document.getElementById('margenBajo').textContent = formatearMoneda(margenBajo);
+            document.getElementById('margenMedio').textContent = formatearMoneda(margenMedio);
+            document.getElementById('margenOptimo').textContent = formatearMoneda(margenOptimo);
+            document.getElementById('margenAlto').textContent = formatearMoneda(margenAlto);
+
+            // Cálculo de metas de recaudación
+            const metaBaja = costos + margenBajo;
+            const metaMedia = costos + margenMedio;
+            const metaOptima = costos + margenOptimo;
+            const metaAlta = costos + margenAlto;
+
+            document.getElementById('metaBajaTotal').textContent = formatearMoneda(metaBaja);
+            document.getElementById('metaMediaTotal').textContent = formatearMoneda(metaMedia);
+            document.getElementById('metaOptimaTotal').textContent = formatearMoneda(metaOptima);
+            document.getElementById('metaAltaTotal').textContent = formatearMoneda(metaAlta);
+
+            document.getElementById('metaBajaPrimeraSemana').textContent = formatearMoneda(metaBaja * 0.3);
+            document.getElementById('metaMediaPrimeraSemana').textContent = formatearMoneda(metaMedia * 0.3);
+            document.getElementById('metaOptimaPrimeraSemana').textContent = formatearMoneda(metaOptima * 0.3);
+            document.getElementById('metaAltaPrimeraSemana').textContent = formatearMoneda(metaAlta * 0.3);
+
+            let totalPorcentaje = 0;
+            let totalUnidades = 0;
+            let granTotal = 0;
+
+            for (let i = 1; i <= grupoCount; i++) {
+                const porcentaje = parseFloat(document.getElementById(`porcentajeGrupo${i}`).value) || 0;
+                totalPorcentaje += porcentaje;
+
+                const unidades = Math.round(unidadesTotales * (porcentaje / 100));
+                document.getElementById(`unidadesGrupo${i}`).textContent = unidades;
+                totalUnidades += unidades;
+
+                const precio = parseFloat(document.getElementById(`precioGrupo${i}`).value) || 0;
+                const totalGrupo = unidades * precio;
+                document.getElementById(`totalGrupo${i}`).textContent = formatearMoneda(totalGrupo);
+                granTotal += totalGrupo;
+
+                // Cálculo de M1, M2, M3, M4
+                const m1 = precio > 0 ? (metaBaja * (porcentaje / 100)) / precio : 0;
+                const m2 = precio > 0 ? (metaMedia * (porcentaje / 100)) / precio : 0;
+                const m3 = precio > 0 ? (metaOptima * (porcentaje / 100)) / precio : 0;
+                const m4 = precio > 0 ? (metaAlta * (porcentaje / 100)) / precio : 0;
+
+                document.getElementById(`m1Grupo${i}`).textContent = formatearNumero(m1);
+                document.getElementById(`m2Grupo${i}`).textContent = formatearNumero(m2);
+                document.getElementById(`m3Grupo${i}`).textContent = formatearNumero(m3);
+                document.getElementById(`m4Grupo${i}`).textContent = formatearNumero(m4);
+            }
+
+            document.getElementById('porcentajeTotal').textContent = totalPorcentaje.toFixed(2) + '%';
+            document.getElementById('unidadesTotal').textContent = totalUnidades;
+            document.getElementById('granTotal').textContent = formatearMoneda(granTotal);
+
+            // Calcular y actualizar la donación unitaria en dólares
+            const donacionUnitariaDolares = donacionProbable / precioDolar;
+            document.getElementById('donacionUnitariaDolares').textContent = formatearMoneda(donacionUnitariaDolares);
+
+            // Actualizar la meta de recaudo en el cuadro de supuestos
+            document.getElementById('metaRecaudoM1').textContent = formatearMoneda(metaBaja);
+            document.getElementById('metaRecaudoM2').textContent = formatearMoneda(metaMedia);
+            document.getElementById('metaRecaudoM3').textContent = formatearMoneda(metaOptima);
+            document.getElementById('metaRecaudoM4').textContent = formatearMoneda(metaAlta);
+
+            // Calcular y actualizar la equivalencia en dólares
+            document.getElementById('equivalenteDolaresM1').textContent = formatearMoneda(metaBaja / precioDolar);
+            document.getElementById('equivalenteDolaresM2').textContent = formatearMoneda(metaMedia / precioDolar);
+            document.getElementById('equivalenteDolaresM3').textContent = formatearMoneda(metaOptima / precioDolar);
+            document.getElementById('equivalenteDolaresM4').textContent = formatearMoneda(metaAlta / precioDolar);
+
+            // Calcular y actualizar el número de personas que deberían aportar
+            const personasAportantesM1 = Math.ceil(metaBaja / donacionProbable);
+            const personasAportantesM2 = Math.ceil(metaMedia / donacionProbable);
+            const personasAportantesM3 = Math.ceil(metaOptima / donacionProbable);
+            const personasAportantesM4 = Math.ceil(metaAlta / donacionProbable);
+
+            document.getElementById('personasAportantesM1').textContent = personasAportantesM1;
+            document.getElementById('personasAportantesM2').textContent = personasAportantesM2;
+            document.getElementById('personasAportantesM3').textContent = personasAportantesM3;
+            document.getElementById('personasAportantesM4').textContent = personasAportantesM4;
+
+            // Calcular y actualizar el total de personas a contactar
+            const personasContactarM1 = Math.ceil(personasAportantesM1 * proporcionContribucion);
+            const personasContactarM2 = Math.ceil(personasAportantesM2 * proporcionContribucion);
+            const personasContactarM3 = Math.ceil(personasAportantesM3 * proporcionContribucion);
+            const personasContactarM4 = Math.ceil(personasAportantesM4 * proporcionContribucion);
+
+            document.getElementById('personasContactarM1').textContent = personasContactarM1;
+            document.getElementById('personasContactarM2').textContent = personasContactarM2;
+            document.getElementById('personasContactarM3').textContent = personasContactarM3;
+            document.getElementById('personasContactarM4').textContent = personasContactarM4;
+        }
+
+        // Agregar event listeners a todos los inputs
+        document.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('input', calcular);
+        });
+
+        // Llamar a calcular() cuando se carga la página
+        window.addEventListener('load', calcular);
+
+        function agregarGrupo() {
+            grupoCount++;
+            const table = document.getElementById('unidadesPreciosTable');
+            const newRow = table.insertRow(table.rows.length - 1);
+            
+            newRow.innerHTML = `
+                <td>Grupo ${grupoCount}</td>
+                <td><input type="number" id="porcentajeGrupo${grupoCount}" value="0" onchange="calcular()"></td>
+                <td id="unidadesGrupo${grupoCount}"></td>
+                <td><input type="number" id="precioGrupo${grupoCount}" value="0" onchange="calcular()"></td>
+                <td id="totalGrupo${grupoCount}"></td>
+                <td id="m1Grupo${grupoCount}"></td>
+                <td id="m2Grupo${grupoCount}"></td>
+                <td id="m3Grupo${grupoCount}"></td>
+                <td id="m4Grupo${grupoCount}"></td>
+            `;
+            
+            calcular();
+        }
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+
+        // Inicializar cálculos
+        calcular();
+    </script>
+</body>
+</html>
