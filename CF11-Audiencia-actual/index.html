@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador precampaña Crowdfunding</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .menu button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover, .menu button.active {
+            background-color: #2980b9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], button, .delete-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover, button:hover, .delete-btn:hover {
+            background-color: #2980b9;
+        }
+        .profile {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: relative;
+            margin-top: auto;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div>  
+        <div id="AudienciaActual" class="tabcontent" style="display:block;">
+            <h1>Audiencia actual</h1>
+            <form id="audienciaActualForm">
+                <div id="profiles">
+                    <!-- Los perfiles se generarán dinámicamente aquí -->
+                </div>
+                <button type="button" id="agregarPerfil">Agregar Nuevo Perfil</button>
+            </form>
+        </div>
+        <div class="actions">
+            <button onclick="mostrarMensaje()">Guardar Parcial</button>
+            <button onclick="mostrarMensaje()">Guardar Como</button>
+            <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+        </div>
+    </div>
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+        empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    </footer>
+
+    <script>
+        const profileQuestions = [
+            { id: "audiencia", label: "Descripción de la Audiencia", type: "textarea" },
+            { id: "genero", label: "Género", type: "text" },
+            { id: "edad", label: "Rango de Edad", type: "text" },
+            { id: "hijos", label: "Hijos", type: "text" },
+            { id: "residencia", label: "Lugar de Residencia", type: "text" },
+            { id: "nivelSocioEconomico", label: "Nivel Socio-Económico", type: "text" },
+            { id: "estudioEmpleo", label: "Estudio/Empleo", type: "text" },
+            { id: "queHaEstudiado", label: "¿Qué ha Estudiado?", type: "text" },
+            { id: "tiempoLibre", label: "Tiempo Libre", type: "text" },
+            { id: "hobbies", label: "Hobbies", type: "text" },
+            { id: "inversionTiempoLibre", label: "En qué invierte su tiempo libre", type: "text" },
+            { id: "dispositivos", label: "¿Qué dispositivos utiliza: Celular, tablet, Laptop?", type: "text" },
+            { id: "comoSeInforma", label: "¿Cómo se informa: (Periódicos, Revistas, Radio, Podcast, Redes, etc)?", type: "text" },
+            { id: "redesSociales", label: "Redes sociales que utiliza con frecuencia", type: "text" },
+            { id: "formatosPreferidos", label: "Tipos de Formato que le gusta consumir (Vídeo, Fotos, Textos, PDF, etc.)", type: "text" },
+            { id: "objetivosInversion", label: "¿Cuáles son sus 3 principales objetivos en términos de inversión / donación?", type: "textarea" },
+            { id: "motivacionObjetivo", label: "¿Para qué quiere lograr ese objetivo?", type: "textarea" },
+            { id: "granSueno", label: "¿Cuál es su gran sueño?", type: "textarea" },
+            { id: "problemas", label: "¿Qué le quita el sueño? Haz una lista de todos los problemas en orden de importancia", type: "textarea" },
+            { id: "consecuenciasProblema", label: "Describe qué perdería su cliente ideal si no resuelve ese problema:", type: "textarea" },
+            { id: "solucionIdeal", label: "Imagínate que tu cliente pudiera encontrar esa solución ¿Cómo sería esa solución?", type: "textarea" },
+            { id: "sentimientosDonante", label: "¿Cómo se siente tu donante / financiador ideal si te conoce?", type: "textarea" },
+            { id: "razonSentimientos", label: "¿Por qué se siente de ese modo?", type: "textarea" },
+            { id: "rutinaDiaria", label: "¿Cómo es su día a Día?", type: "textarea" },
+            { id: "autoDescripcion", label: "¿Cómo se describe a sí mismo y qué imagen proyecta?", type: "textarea" },
+            { id: "propuestaValor", label: "Entendiendo esto, define tu propuesta de valor:", type: "textarea" },
+            { id: "nombreCliente", label: "Nombre (Puedes nombrar a tu cliente ideal, Ej: Motivado por la tecnología, estudiante, docente, etc).", type: "text" },
+            { id: "percepcionCampana", label: "¿Qué es lo que ve y escucha sobre el tema de campaña que propones?", type: "textarea" },
+            { id: "opinionAcciones", label: "¿Qué piensa y/o opina sobre lo que haces?", type: "textarea" },
+            { id: "accionesCampana", label: "¿Qué dice y hace sobre lo que propones como campaña?", type: "textarea" },
+            { id: "experienciaDonacion", label: "¿Ha donado en línea antes?", type: "text" },
+            { id: "tipoProyectoDonacion", label: "¿Si tuviera que donar algún proyecto, qué tipo de proyecto sería?", type: "textarea" },
+            { id: "motivacionDonacion", label: "¿Qué sería lo que más motiva a esta persona a donar?", type: "textarea" },
+            { id: "potencialAporte", label: "¿Cuál audiencia tiene mayor potencial para aportar al proyecto?", type: "textarea" },
+            { id: "caracteristicasAtractivas", label: "¿Qué tipo de características le llamaría más la atención de tu proyecto?", type: "textarea" }
+        ];
+
+        let profileCount = 0;
+
+        function createProfileForm(profileNumber) {
+            let formHtml = `<div id="profile${profileNumber}" class="profile">
+                                <button type="button" class="delete-btn" onclick="borrarPerfil(${profileNumber})">Borrar</button>
+                                <h3>Perfil ${profileNumber}</h3>`;
+            
+            profileQuestions.forEach(question => {
+                formHtml += `
+                    <div class="form-group">
+                        <label for="${question.id}${profileNumber}">${question.label}:</label>
+                        ${question.type === 'textarea' 
+                            ? `<textarea id="${question.id}${profileNumber}" name="${question.id}${profileNumber}"></textarea>`
+                            : `<input type="text" id="${question.id}${profileNumber}" name="${question.id}${profileNumber}">`
+                        }
+                    </div>`;
+            });
+
+            formHtml += `</div>`;
+            return formHtml;
+        }
+
+        function agregarPerfil() {
+            profileCount++;
+            const profilesContainer = document.getElementById('profiles');
+            profilesContainer.insertAdjacentHTML('beforeend', createProfileForm(profileCount));
+        }
+
+        function borrarPerfil(profileNumber) {
+            const profileToRemove = document.getElementById(`profile${profileNumber}`);
+            if (profileToRemove) {
+                profileToRemove.remove();
+            }
+        }
+
+        document.getElementById('agregarPerfil').addEventListener('click', agregarPerfil);
+
+        document.getElementById('audienciaActualForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aquí iría la lógica para procesar y guardar los datos del formulario
+            console.log('Formulario enviado');
+        });
+
+        // Crear el primer perfil al cargar la página
+        agregarPerfil();
+
+        // Actualizar el año en el pie de página
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("menu button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.target.className += " active";
+        }
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+    </script>
+</body>
+</html>
