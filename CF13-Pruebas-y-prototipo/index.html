@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador precampaña Crowdfunding</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .menu button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover, .menu button.active {
+            background-color: #2980b9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], button, .delete-btn, .restore-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover, button:hover, .delete-btn:hover, .restore-btn:hover {
+            background-color: #2980b9;
+        }
+        .profile {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e74c3c;
+        }
+        .delete-btn:hover {
+            background-color: #c0392b;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div>  
+        <div id="Prototipo" class="tabcontent" style="display:block;">
+            <h1>Pruebas y prototipos</h1>
+            <form id="pruebasPrototipoForm">
+                <div id="pruebasContainer"></div>
+                <button type="button" onclick="agregarPrueba()">Agregar Nueva Prueba</button>
+                <button type="button" class="restore-btn" onclick="restaurarPruebas()">Restaurar Pruebas Originales</button>
+                <div id="contenidoRedesContainer"></div>
+                <button type="button" onclick="agregarContenidoRedes()">Agregar Nuevo Contenido en Redes</button>
+                <button type="button" class="restore-btn" onclick="restaurarContenidoRedes()">Restaurar Contenido Original</button>
+                <div id="enlacesPrototipoContainer"></div>
+                <button type="button" onclick="agregarEnlacePrototipo()">Agregar Enlace de Prototipo</button>
+                <button type="button" class="restore-btn" onclick="restaurarEnlacesPrototipo()">Restaurar Enlaces Originales</button>
+            </form>
+        </div>
+        <div class="actions">
+            <button onclick="mostrarMensaje()">Guardar Parcial</button>
+            <button onclick="mostrarMensaje()">Guardar Como</button>
+            <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+        </div>
+    </div>
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+        empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    </footer>
+
+    <script>
+        const tiposPrueba = {
+            "Mago de Oz": "Desarrolla manualmente y bajo costo la parte más básica de una plataforma online.",
+            "Crowdfunding test": "Lleva tu idea a una plataforma de crowdfunding.",
+            "Prueba de humo": "Realiza un video explicativo de corta duración.",
+            "Uso de landing page": "Crea una página de aterrizaje donde muestres cómo funciona tu producto.",
+            "Campañas publicitarias": "Crea anuncios físicos y/o digitales.",
+            "Test A/B": "Prueba dos versiones de una misma acción de marketing.",
+            "Concierge": "Especifica que todo se hace de forma manual."
+        };
+
+        const opcionesContenido = {
+            "Educativo": ["Campaña de e-mail", "Guía accionable", "Ejemplo práctico", "Paso a paso"],
+            "Hack": ["Checklist", "Plantilla", "Roadmap", "Calendario", "Mapa mental"],
+            "Audiovisual": ["Webinar", "Video explicativo", "Audio educativo", "Minicurso"],
+            "Evergreen": ["E-book", "Whitepaper", "Informe", "Caso de estudio", "Infografía", "Tendencias"],
+            "Giveaway": ["Cupones", "Descuentos", "Concursos", "Juegos", "Sorteos", "Ofertas flash", "Envío gratis"],
+            "Ego": ["Test de personalidad", "Test profesional", "Encuestas", "Cuestionarios"],
+            "Tools": ["Chatbot", "Freetrial", "Consultoría gratuita"],
+            "Comunidad": ["Grupos privados (Facebook)", "Prelanzamiento"]
+        };
+
+        const pruebasOriginales = [
+            { tipo: "Mago de Oz", descripcion: "Prueba inicial de Mago de Oz", resultados: "Resultados iniciales" }
+        ];
+
+        const contenidoRedesOriginal = [
+            { redSocial: "Instagram", tipoContenido: "Educativo", opcionContenido: "Guía accionable", descripcion: "Contenido educativo inicial" }
+        ];
+
+        const enlacesPrototipoOriginales = [
+            { enlace: "https://ejemplo.com/prototipo-inicial" }
+        ];
+
+        function crearElemento(tipo, datos) {
+            const elemento = document.createElement('div');
+            elemento.className = 'seccion';
+            elemento.innerHTML = `
+                <button type="button" class="delete-btn" onclick="this.parentElement.remove()">Eliminar</button>
+                <h3>${tipo}</h3>
+                ${generarContenidoElemento(tipo, datos)}
+            `;
+            return elemento;
+        }
+
+        function generarContenidoElemento(tipo, datos) {
+            switch(tipo) {
+                case 'Prueba':
+                    return `
+                        <div class="form-group">
+                            <label for="tipoPrueba">Tipo de Prueba:</label>
+                            <select name="tipoPrueba" onchange="mostrarExplicacion(this)">
+                                <option value="">Seleccione un tipo de prueba</option>
+                                ${Object.keys(tiposPrueba).map(t => `<option value="${t}" ${datos && datos.tipo === t ? 'selected' : ''}>${t}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="explicacion" style="display: none;"></div>
+                        <div class="form-group">
+                            <label for="descripcionPrueba">Descripción:</label>
+                            <textarea name="descripcionPrueba" rows="3" required placeholder="¿Cómo se desarrolló el experimento?">${datos ? datos.descripcion : ''}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="resultadosPrueba">Principales resultados:</label>
+                            <textarea name="resultadosPrueba" rows="3" required placeholder="Escribe cifras relevantes y hallazgos.">${datos ? datos.resultados : ''}</textarea>
+                        </div>
+                    `;
+                case 'Contenido en Redes':
+                    return `
+                        <div class="form-group">
+                            <label for="redSocial">Red social:</label>
+                            <input type="text" name="redSocial" required value="${datos ? datos.redSocial : ''}">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipoContenido">Tipo de contenido:</label>
+                            <select name="tipoContenido" onchange="mostrarOpcionesContenido(this)">
+                                <option value="">Seleccione un tipo de contenido</option>
+                                ${Object.keys(opcionesContenido).map(t => `<option value="${t}" ${datos && datos.tipoContenido === t ? 'selected' : ''}>${t}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="form-group opcionesContenidoGroup" style="display: none;">
+                            <label for="opcionContenido">Selecciona la herramienta:</label>
+                            <select name="opcionContenido"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcionContenido">Descripción:</label>
+                            <textarea name="descripcionContenido" rows="3" required placeholder="¿Cómo lo hiciste, durante cuánto tiempo y cuáles fueron los resultados?">${datos ? datos.descripcion : ''}</textarea>
+                        </div>
+                    `;
+                case 'Enlace de Prototipo':
+                    return `
+                        <div class="form-group">
+                            <label for="enlacePrototipo">Enlace al prototipo:</label>
+                            <input type="url" name="enlacePrototipo" required placeholder="https://ejemplo.com/mi-prototipo" value="${datos ? datos.enlace : ''}">
+                        </div>
+                    `;
+            }
+        }
+
+        function agregarPrueba() {
+            document.getElementById('pruebasContainer').appendChild(crearElemento('Prueba'));
+        }
+
+        function agregarContenidoRedes() {
+            document.getElementById('contenidoRedesContainer').appendChild(crearElemento('Contenido en Redes'));
+        }
+
+        function agregarEnlacePrototipo() {
+            document.getElementById('enlacesPrototipoContainer').appendChild(crearElemento('Enlace de Prototipo'));
+        }
+
+        function restaurarPruebas() {
+            document.getElementById('pruebasContainer').innerHTML = '';
+            pruebasOriginales.forEach(prueba => {
+                document.getElementById('pruebasContainer').appendChild(crearElemento('Prueba', prueba));
+            });
+        }
+
+        function restaurarContenidoRedes() {
+            document.getElementById('contenidoRedesContainer').innerHTML = '';
+            contenidoRedesOriginal.forEach(contenido => {
+                document.getElementById('contenidoRedesContainer').appendChild(crearElemento('Contenido en Redes', contenido));
+            });
+        }
+
+        function restaurarEnlacesPrototipo() {
+            document.getElementById('enlacesPrototipoContainer').innerHTML = '';
+            enlacesPrototipoOriginales.forEach(enlace => {
+                document.getElementById('enlacesPrototipoContainer').appendChild(crearElemento('Enlace de Prototipo', enlace));
+            });
+        }
+
+        function mostrarExplicacion(select) {
+            const explicacionDiv = select.parentElement.nextElementSibling;
+            const tipoPrueba = select.value;
+            if (tiposPrueba[tipoPrueba]) {
+                explicacionDiv.textContent = tiposPrueba[tipoPrueba];
+                explicacionDiv.style.display = 'block';
+            } else {
+                explicacionDiv.style.display = 'none';
+            }
+        }
+
+        function mostrarOpcionesContenido(select) {
+            const opcionesGroup = select.parentElement.nextElementSibling;
+            const opcionesSelect = opcionesGroup.querySelector('select');
+            const tipoContenido = select.value;
+            
+            if (opcionesContenido[tipoContenido]) {
+                opcionesSelect.innerHTML = opcionesContenido[tipoContenido].map(opcion => 
+                    `<option value="${opcion}">${opcion}</option>`
+                ).join('');
+                opcionesGroup.style.display = 'block';
+            } else {
+                opcionesGroup.style.display = 'none';
+            }
+        }
+
+        document.getElementById('pruebasPrototipoForm').onsubmit = function(e) {
+            e.preventDefault();
+            console.log('Formulario enviado');
+            // Aquí iría la lógica para procesar y guardar los datos del formulario
+        };
+
+        // Inicializar con los elementos originales
+        restaurarPruebas();
+        restaurarContenidoRedes();
+        restaurarEnlacesPrototipo();
+
+        function openTab(evt, tabName) {
+            console.log(`Abriendo pestaña: ${tabName}`);
+            // Aquí iría la lógica para cambiar entre pestañas
+        }
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+    </script>
+</body>
+</html>
