@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador precampaña Crowdfunding</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .container {
+                width: 80%;
+                margin: auto;
+                overflow: hidden;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                flex: 1;
+            }
+            h1, h2, h3 {
+                color: #2c3e50;
+            }
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .menu a, .menu button {
+                display: inline-block;
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                text-decoration: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .menu a:hover, .menu button:hover {
+                background-color: #2980b9;
+            }
+            .menu a.active, .menu button.active {
+                background-color: #2980b9;
+            }
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            input[type="text"], select, textarea {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px; /* Borde redondeado */
+                box-sizing: border-box;
+            }
+            input[type="submit"], .add-funder-btn, .add-partner-btn {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                font-size: 16px;
+            }
+            input[type="submit"]:hover, .add-funder-btn:hover, .add-partner-btn:hover {
+                background-color: #2980b9;
+            }
+            .error {
+                color: #e74c3c;
+                font-size: 0.9em;
+                margin-top: 5px;
+            }
+            footer {
+                background-color: #2c3e50;
+                color: #ecf0f1;
+                text-align: center;
+                padding: 10px 0;
+                width: 100%;
+            }
+            .funder-item, .partner-item {
+                background-color: #ecf0f1;
+                padding: 15px;
+                border-radius: 5px; /* Borde redondeado */
+                margin-bottom: 20px;
+            }
+            .suggested-actions {
+                margin-top: 10px;
+                font-style: italic;
+                color: #7f8c8d;
+                background-color: #f9f9f9;
+                padding: 10px;
+                border-left: 3px solid #3498db;
+            }
+            .actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            .actions button {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px; /* Borde redondeado */
+                cursor: pointer;
+                font-size: 16px;
+            }
+            .actions button:hover {
+                background-color: #2980b9;
+            }
+        </style>
+    </head>
+    
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div> 
+        <div id="RelacionSocios" class="tabcontent" style="display:block;">
+            <h1>Relación con los socios</h1>
+            <form id="relacionSociosForm">
+                <div id="partnersList">
+                    <div class="partner-item">
+                        <h3>Socio 1</h3>
+                        <div class="form-group">
+                            <label for="nombreSocio1">Nombre del socio potencial:</label>
+                            <input type="text" id="nombreSocio1" name="nombreSocio1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="frecuenciaOperacion1">Frecuencia de operación:</label>
+                            <select id="frecuenciaOperacion1" name="frecuenciaOperacion1" required onchange="updateSuggestedActions(1)">
+                                <option value="">Seleccione una opción</option>
+                                <option value="frecuenteCorto">Operación frecuente / transacción de corto plazo</option>
+                                <option value="frecuenteLargo">Operación frecuente / transacción de largo plazo</option>
+                                <option value="esporadicaCorto">Operación esporádica / transacción de corto plazo</option>
+                                <option value="esporadicaLargo">Operación esporádica / transacción de largo plazo</option>
+                            </select>
+                        </div>
+                        <div class="suggested-actions" id="suggestedActionsFrecuencia1"></div>
+                        <div class="form-group">
+                            <label for="contribucionValor1">Contribución propuesta de valor:</label>
+                            <select id="contribucionValor1" name="contribucionValor1" required onchange="updateSuggestedActions(1)">
+                                <option value="">Seleccione una opción</option>
+                                <option value="insignificanteLimitadas">Insignificante contribución / limitadas opciones</option>
+                                <option value="insignificanteMultiples">Insignificante contribución / múltiples opciones</option>
+                                <option value="significativaLimitadas">Significativa contribución / limitadas opciones</option>
+                                <option value="significativaMultiples">Significativa contribución / múltiples opciones</option>
+                            </select>
+                        </div>
+                        <div class="suggested-actions" id="suggestedActionsContribucion1"></div>
+                    </div>
+                </div>
+                <button type="button" id="addPartner" class="add-partner-btn">Añadir otro socio</button>
+            </form>
+        </div>
+        
+        <!-- Otros componentes irán aquí -->
+    
+    </div>
+    <div class="actions">
+        <button onclick="mostrarMensaje()">Guardar Parcial</button>
+        <button onclick="mostrarMensaje()">Guardar Como</button>
+        <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+    </div>
+        
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+        empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    </footer>
+    
+    <script>
+        let partnerCount = 1;
+    
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("menu button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.target.className += " active";
+        }
+    
+        function updateSuggestedActions(partnerNumber) {
+            const frecuenciaOperacion = document.getElementById(`frecuenciaOperacion${partnerNumber}`).value;
+            const contribucionValor = document.getElementById(`contribucionValor${partnerNumber}`).value;
+            let suggestedActionsFrecuencia = "";
+            let suggestedActionsContribucion = "";
+    
+            // Sugerencias basadas en la frecuencia de operación
+            switch (frecuenciaOperacion) {
+                case "frecuenteCorto":
+                    suggestedActionsFrecuencia = "Socio Transaccional. Acción: ¿Dependencia del proveedor? ¿Opciones?";
+                    break;
+                case "frecuenteLargo":
+                    suggestedActionsFrecuencia = "Socio cercano. Colaboración estrecha-co-dependencia. Acción: Confianza, Repartición de riesgos-beneficios";
+                    break;
+                case "esporadicaCorto":
+                    suggestedActionsFrecuencia = "No hay colaboración. Acción: ¿Importancia del b/s?";
+                    break;
+                case "esporadicaLargo":
+                    suggestedActionsFrecuencia = "Socio lejano. Colaboración mas allá de la compra-venta. Acción: ¿Dependencia del proveedor? ¿Opciones?";
+                    break;
+            }
+    
+            // Sugerencias basadas en la contribución propuesta de valor
+            switch (contribucionValor) {
+                case "insignificanteLimitadas":
+                    suggestedActionsContribucion = "Acciones: Mantener relación comercial. ¿impacto pudiera ser significativo?";
+                    break;
+                case "insignificanteMultiples":
+                    suggestedActionsContribucion = "Acciones: Minimizar costos, Buscar otros beneficios.";
+                    break;
+                case "significativaLimitadas":
+                    suggestedActionsContribucion = "Acciones: Buscar colaboración estrecha, Co-invertir";
+                    break;
+                case "significativaMultiples":
+                    suggestedActionsContribucion = "Acciones: Relacionarme con las mejores 2/3 opciones, ¿Puedo controlar?";
+                    break;
+            }
+    
+            document.getElementById(`suggestedActionsFrecuencia${partnerNumber}`).textContent = suggestedActionsFrecuencia;
+            document.getElementById(`suggestedActionsContribucion${partnerNumber}`).textContent = suggestedActionsContribucion;
+        }
+    
+        document.getElementById('addPartner').addEventListener('click', function() {
+            partnerCount++;
+            const newPartner = `
+                <div class="partner-item">
+                    <h3>Socio ${partnerCount}</h3>
+                    <div class="form-group">
+                        <label for="nombreSocio${partnerCount}">Nombre del socio potencial:</label>
+                        <input type="text" id="nombreSocio${partnerCount}" name="nombreSocio${partnerCount}">
+                    </div>
+                    <div class="form-group">
+                        <label for="frecuenciaOperacion${partnerCount}">Frecuencia de operación:</label>
+                        <select id="frecuenciaOperacion${partnerCount}" name="frecuenciaOperacion${partnerCount}" onchange="updateSuggestedActions(${partnerCount})">
+                            <option value="">Seleccione una opción</option>
+                            <option value="frecuenteCorto">Operación frecuente / transacción de corto plazo</option>
+                            <option value="frecuenteLargo">Operación frecuente / transacción de largo plazo</option>
+                            <option value="esporadicaCorto">Operación esporádica / transacción de corto plazo</option>
+                            <option value="esporadicaLargo">Operación esporádica / transacción de largo plazo</option>
+                        </select>
+                    </div>
+                    <div class="suggested-actions" id="suggestedActionsFrecuencia${partnerCount}"></div>
+                    <div class="form-group">
+                        <label for="contribucionValor${partnerCount}">Contribución propuesta de valor:</label>
+                        <select id="contribucionValor${partnerCount}" name="contribucionValor${partnerCount}" onchange="updateSuggestedActions(${partnerCount})">
+                            <option value="">Seleccione una opción</option>
+                            <option value="insignificanteLimitadas">Insignificante contribución / limitadas opciones</option>
+                            <option value="insignificanteMultiples">Insignificante contribución / múltiples opciones</option>
+                            <option value="significativaLimitadas">Significativa contribución / limitadas opciones</option>
+                            <option value="significativaMultiples">Significativa contribución / múltiples opciones</option>
+                        </select>
+                    </div>
+                    <div class="suggested-actions" id="suggestedActionsContribucion${partnerCount}"></div>
+                </div>
+            `;
+            document.getElementById('partnersList').insertAdjacentHTML('beforeend', newPartner);
+        });
+    
+        document.getElementById('relacionSociosForm').addEventListener('submit', function(e) {
+            // ... (el manejo del envío del formulario permanece igual) ...
+        });
+    
+        // Actualizar el año en el pie de página
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+    </script>
+</body>
+</html>
