@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador precampaña Crowdfunding</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 20px;
+                background-color: #f4f4f4;
+                color: #333;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            .container {
+                max-width: 1200px;
+                margin: auto;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                flex: 1;
+            }
+            h1, h2, h3 {
+                color: #2c3e50;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+            th, td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            input[type="number"], input[type="text"], textarea, select {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            textarea {
+                height: 100px;
+            }
+            button {
+                background-color: #1E90FF;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                font-size: 16px;
+            }
+            button:hover {
+                background-color: #4169E1;
+            }
+            .total {
+                font-weight: bold;
+            }
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+            .menu button {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .menu button:hover, .menu button.active {
+                background-color: #2980b9;
+            }
+            .form-group {
+                margin-bottom: 15px;
+            }
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            .profile {
+                border: 1px solid #ccc;
+                padding: 20px;
+                margin-bottom: 20px;
+                border-radius: 5px;
+                position: relative;
+            }
+            .delete-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background-color: #e74c3c;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+            .delete-btn:hover {
+                background-color: #c0392b;
+            }
+            footer {
+                background-color: #2c3e50;
+                color: #ecf0f1;
+                text-align: center;
+                padding: 10px 0;
+                width: 100%;
+                margin-top: auto;
+            }
+            .actions {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }
+            .actions button {
+                background-color: #3498db;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .actions button:hover {
+                background-color: #2980b9;
+            }
+        </style>
+    </head>
+    
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div>  
+<body>
+    <div class="container">
+        <h1>Correo de Lanzamiento - Campaña de Crowdfunding</h1>
+        
+        <h2>Remitente</h2>
+        <input type="text" id="remitente" placeholder="Cuida el nombre y el dominio desde el cual lanzarás tu campaña">
+        
+        <h2>Asunto</h2>
+        <input type="text" id="asunto" placeholder="Debe ser claro, llamativo, corto (50 caracteres o menos) y con un llamado a la acción resaltando la urgencia">
+        
+        <h2>Saludo personalizado</h2>
+        <input type="text" id="saludo" placeholder="Haz sentir a tus lectores especiales">
+        
+        <h2>Imágenes emotivas</h2>
+        <textarea id="imagenes" placeholder="Describe las imágenes que complementen el texto e inviten a los financiadores/donantes a la acción"></textarea>
+        
+        <h2>Mensaje</h2>
+        <textarea id="mensaje" placeholder="Presentar el problema, la solución, el impacto de cada donativo, e incluir las recompensas y el nivel de las mismas"></textarea>
+        
+        <h2>Llamada a la acción</h2>
+        <textarea id="llamada_accion" placeholder="Explicar lo que quieren que hagan los donantes (dona ahora)"></textarea>
+        
+        <button onclick="generarCorreo()">Generar Correo</button>
+        
+        <h2>Comparación de Correos</h2>
+        <div class="comparison">
+            <div>
+                <h3>Correo Original</h3>
+                <div id="correo_original"></div>
+            </div>
+            <div>
+                <h3>Correo generado con IA</h3>
+                <textarea id="correo_ia" placeholder="Pega aquí el correo generado con IA"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <button onclick="mostrarMensaje()">Guardar Parcial</button>
+        <button onclick="mostrarMensaje()">Guardar Como</button>
+        <a href="https://maryics.github.io/MaryiCSCrowdMenu/" target="_blank"><button>Regresar al Menú Principal</button></a>
+    </div>
+</div>
+    <footer>
+        Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+        empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+    </footer>
+    <script>
+        function generarCorreo() {
+            const campos = [
+                { id: 'remitente', label: 'Remitente' },
+                { id: 'asunto', label: 'Asunto' },
+                { id: 'saludo', label: 'Saludo personalizado' },
+                { id: 'imagenes', label: 'Imágenes emotivas' },
+                { id: 'mensaje', label: 'Mensaje' },
+                { id: 'llamada_accion', label: 'Llamada a la acción' }
+            ];
+            
+            let correoCompleto = '';
+
+            campos.forEach(campo => {
+                const valor = document.getElementById(campo.id).value.trim();
+                if (valor !== '') {
+                    correoCompleto += `<strong>${campo.label}:</strong><br>`;
+                    correoCompleto += valor + '<br><br>';
+                }
+            });
+
+            document.getElementById('correo_original').innerHTML = correoCompleto;
+        }
+
+        function mostrarMensaje() {
+            alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+        }
+    </script>
+</body>
+</html>
