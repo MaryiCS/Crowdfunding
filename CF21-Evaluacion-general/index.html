@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación general de proyecto</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            flex: 1;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .menu button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .menu button:hover {
+            background-color: #2980b9;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f2f2f2;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e9e9e9;
+            font-weight: bold;
+            text-align: center;
+        }
+        .result span {
+            color: #e74c3c;
+            font-size: 1.2em;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .actions button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .actions button:hover {
+            background-color: #2980b9;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador precampaña Crowdfunding</h1>
+        <div class="menu">
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descripción del equipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Características de la plataforma</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Modelo Canvas Inicial</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Canvas del Crowdfunding</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Descubrimiento de cliente</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los clientes/donantes</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Relación con los socios</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Diseño del valor y canales</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Actividades y recursos</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de la competencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Audiencia actual</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Análisis de audiencia</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Pruebas y prototipo</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Costos de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Objetivos de recaudación</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Correo de lanzamiento</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación de campaña</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Indicadores</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Preguntas difíciles</button></a>
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación redes y comunicación del proyecto</button></a> 
+            <a href="<!-- Agregar aquí el enlace -->" target="_blank"><button>Evaluación general de proyecto </button></a>
+        </div>  
+        
+<body>
+    <div class="container">
+        <h1>Evaluación general de proyecto</h1>
+        
+        <h2>Equipo</h2>
+        <table id="equipo">
+            <tr>
+                <th>Criterio</th>
+                <th>Calificación (1-5)</th>
+            </tr>
+            <tr>
+                <td>El equipo ha aceptado los compromisos básicos para la participación en el programa</td>
+                <td><input type="number" min="1" max="5" step="0.1" required></td>
+            </tr>
+            <tr>
+                <td>El primer modelo de negocio presentado denota una comprensión de los conceptos</td>
+                <td><input type="number" min="1" max="5" step="0.1" required></td>
+            </tr>
+            <tr>
+                <td>El equipo comprende la lógica del Descubrimiento de Clientes y discutió claramente una estrategia para visitar y entrevistar un amplio número de consumidores potenciales</td>
+                <td><input type="number" min="1" max="5" step="0.1" required></td>
+            </tr>
+        </table>
+
+        <div class="result">Promedio Equipo: <span id="promedio-equipo">0</span></div>
+   
+        
+                <h2>Descripción</h2>
+                <table id="descripcion">
+                    <tr>
+                        <th>Criterio</th>
+                        <th>Calificación (1-5)</th>
+                    </tr>
+                    <tr>
+                        <td>El equipo presentó información de mínimo treinta (30) entrevistas con consumidores potenciales, donde identifica claramente un problema (dolor) que afecta a los consumidores potenciales.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>Los beneficios que el producto genera para los usuarios son claros y responden al problema identificado.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>Los atributos del producto o servicio han sido identificados con precisión y lograrían entregar los beneficios propuestos.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo ha realizado una identificación preliminar del PMV (Producto Mínimo Viable) que le permitiría comenzar a generar ingresos en el mercado.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo entiende claramente cómo sería un escenario de uso de su producto en "un día en la vida de un cliente".</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo presentó información sólida para mostrar que el paquete de beneficios que el producto suministra al consumidor es superior a cualquier oferta de la competencia.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo ha identificado claramente el (los) segmentos que demandarían su producto y presentó unos Arquetipos de Consumidor sustentados en una sólida investigación a partir de entrevistas con consumidores.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo logró identificar los motivadores de compra en cada uno de los segmentos relevantes.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo logró identificar los actores fundamentales en el proceso de compra (el "Comprador Económico", el "Decisor", el "Influenciador").</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo presentó información sólida respecto al tamaño del mercado en sus estimaciones del TAM (Total Available Market), SAM (Served Available Market) y TM (Target Market).</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo identificó claramente los canales que utilizará y sustentó esta decisión con información sólida.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo presentó un diagrama de distribución, donde identifica una combinación deseada de canales directos e indirectos para el producto, con estimaciones de ingresos y costos, y sustentó su decisión con información sólida obtenida en el mercado.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>Keep & Grow: El equipo presentó un diagrama de Embudo con las estrategias y tácticas necesarias para mantener e incrementar el número de consumidores efectivos.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                    <tr>
+                        <td>El equipo identifica mínimo diez (10) competidores potenciales y presenta un resumen que contenga: Nombre, Tamaño de la empresa, Productos/servicios líderes, Canal(es) de venta, Publicidad, Promociones, Fortalezas, Debilidades.</td>
+                        <td><input type="number" min="1" max="5" step="0.1" required></td>
+                    </tr>
+                </table>
+                <div class="result">Promedio Descripción: <span id="promedio-descripcion">0</span></div>
+        
+   
+            <h2>Mecenas y Variables</h2>
+            <table id="mecenas">
+                <tr>
+                    <th>Criterio</th>
+                    <th>Calificación (1-5)</th>
+                </tr>
+                <tr>
+                    <td>El equipo presentó estimaciones de ingresos que son consistentes con sus argumentos sobre Segmentos, Tamaño de Mercado, Canales y Relaciones con consumidores.</td>
+                    <td><input type="number" min="1" max="5" step="0.1" required></td>
+                </tr>
+                <tr>
+                    <td>El Modelo de Ingresos (Ventas, Suscripciones, Pago por uso, etc...) está claramente definido y fortalece las ventajas de este proyecto frente a la competencia.</td>
+                    <td><input type="number" min="1" max="5" step="0.1" required></td>
+                </tr>
+                <tr>
+                    <td>El Modelo de Ingresos explora en forma creativa diferentes posibilidades para la generación de ingresos, que van más allá de las fórmulas que son tradicionales en el negocio.</td>
+                    <td><input type="number" min="1" max="5" step="0.1" required></td>
+                </tr>
+                <tr>
+                    <td>El equipo definió tácticas convincentes en materia de precios, basadas en información sólida y análisis de consumidores potenciales y competencia.</td>
+                    <td><input type="number" min="1" max="5" step="0.1" required></td>
+                </tr>
+                <tr>
+                    <td>El equipo desarrolla un arquetipo de cliente con los siguientes puntos básicos: Nombre, ¿Qué es lo que ve y escucha sobre la propuesta que tienes?, ¿Qué piensa y/o opina sobre lo que haces?, ¿Qué dice y hace sobre lo que propones?</td>
+                    <td><input type="number" min="1" max="5" step="0.1" required></td>
+                </tr>
+            </table>
+            <div class="result">Promedio Mecenas y Variables: <span id="promedio-mecenas">0</span></div>        
+
+            <h2>Producto Mínimo Viable</h2>
+<table id="pmv">
+    <tr>
+        <th>Criterio</th>
+        <th>Calificación (1-5)</th>
+    </tr>
+    <tr>
+        <td>El equipo ha logrado definir un Producto Mínimo Viable, que permitiría a esta empresa comenzar a generar ingresos a partir de un producto dotado de especificaciones mínimas.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo ha avanzado en el desarrollo de un prototipo de su Producto Mínimo Viable, digital y/o físico.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo ha logrado hacer pruebas con consumidores a partir de su prototipo de Producto Mínimo Viable y ha incorporado los resultados de esta pruebas en el Business Model Canvas.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+</table>
+<div class="result">Promedio Producto Mínimo Viable: <span id="promedio-pmv">0</span></div>
+<h2>Fuentes de Ingreso</h2>
+<table id="fuentes-ingreso">
+    <tr>
+        <th>Criterio</th>
+        <th>Calificación (1-5)</th>
+    </tr>
+    <tr>
+        <td>El equipo emprendedor ha identificado con precisión cuáles son los Activos Financieros indispensables para lograr los objetivos en la fase inicial de la empresa. También ha validado con actores externos su estrategia para obtenerlos.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo emprendedor ha identificado con precisión cuáles son los Activos Físicos indispensables para lograr los objetivos en la fase inicial de la empresa. También ha validado con actores externos su estrategia para obtenerlos.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo emprendedor ha identificado con precisión cuáles son los Activos Intangibles (marcas, propiedad intelectual, otros) indispensables para lograr los objetivos en la fase inicial de la empresa. También ha validado con actores externos su estrategia para obtenerlos.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo emprendedor ha identificado con precisión cuál es el Capital Humano indispensable para lograr los objetivos en la fase inicial de la empresa. También ha validado con actores externos su estrategia para obtenerlo.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo emprendedor ha identificado con precisión las Actividades fundamentales que requiere ejecutar para lograr una ventaja sostenible en este negocio. Tiene una estrategia clara que le permitirá desempeñar esas actividades.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo emprendedor ha identificado los aliados que requiere y entiende las razones por las cuales esos aliados son necesarios. Las hipótesis al respecto han sido validadas por el equipo en el terreno.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo emprendedor tiene claras las razones por las cuales los aliados tendrán interés en entrar a esta relación. Las hipótesis al respecto han sido validadas con los aliados potenciales.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+</table>
+<div class="result">Promedio Fuentes de Ingreso: <span id="promedio-fuentes-ingreso">0</span></div>
+<h2>Costos y Variables</h2>
+<table id="costos-variables">
+    <tr>
+        <th>Criterio</th>
+        <th>Calificación (1-5)</th>
+    </tr>
+    <tr>
+        <td>El equipo presentó estimaciones de su estructura de costos que son consistentes con sus argumentos sobre Segmentos, Tamaño de Mercado, Canales y Relaciones con consumidores.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>La Estructura de Costos presentada identifica correctamente los Costos Fijos que este proyecto enfrenta.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>La Estructura de Costos presentada identifica correctamente los Costos Variables que este proyecto enfrenta.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo ha realizado un cálculo cuidadoso respecto a los tiempos que tomará este negocio en generar un flujo de efectivo positivo y el tiempo durante el cual será necesario inyectar dinero de inversionistas al negocio, antes que el proyecto genere recursos suficientes para ser sostenible.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+</table>
+<div class="result">Promedio Costos y Variables: <span id="promedio-costos-variables">0</span></div>
+<h2>Proyecto Digital</h2>
+<table id="proyecto-digital">
+    <tr>
+        <th>Criterio</th>
+        <th>Calificación (1-5)</th>
+    </tr>
+    <tr>
+        <td>El equipo selecciona máximo dos (2) redes sociales donde empieza a generar una comunidad que crece semanalmente hasta llegar a 500 seguidores</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo diseña una propuesta gráfica que incluye: 1. imagen, 2. Logo; 3. Tarjetas digitales de presentación</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo presenta mínimo un historial de cinco publicaciones semanales donde incluya los siguientes lead magnets: Educativo, Hack, Audiovisual, Evergreen, Giveaway, Ego, Tools, Comunidad</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo presenta una base de datos de todos los seguidores con datos básicos, usando la herramienta de landing page</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>El equipo usa los siguientes hashtags sugeridos en todas sus publicaciones: #Creatividadyemprendimiento #unisallecol #wearetechrepublic #FEEDSUnisalle</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+</table>
+<div class="result">Promedio Proyecto Digital: <span id="promedio-proyecto-digital">0</span></div>
+<h2>Deck</h2>
+<table id="deck">
+    <tr>
+        <th>Criterio</th>
+        <th>Calificación (1-5)</th>
+    </tr>
+    <tr>
+        <td>Cover: Logotipo, información de contacto, roles del equipo, misión del negocio, y breve historia de la empresa.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Gancho: Destaca los aspectos más impresionantes de la iniciativa.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Problema: Describe al cliente, el problema que enfrenta, y la necesidad de una nueva solución.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Solución: Presenta el producto, sus beneficios, y cómo aborda el problema.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Tecnología: Describe la tecnología detrás de la solución propuesta.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>¿Por qué ahora?: Muestra la evolución histórica de la idea y las tendencias actuales.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Tamaño de Mercado: Muestra el tamaño actual y potencial del mercado.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Modelo de negocio: Usa el Canvas de A. Osterwalder, incluye propuesta de valor y segmento de cliente.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Estrategia de crecimiento: Describe la estrategia para adquirir clientes y los canales de marketing.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Competencia y Diferenciación: Explica las ventajas competitivas y presenta una matriz de competidores.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Roadmap de Producto: Muestra la hoja de ruta del producto alineada con la estrategia de negocios.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Equipo: Muestra los roles y la experiencia previa de los fundadores y empleados clave.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Tracción: Describe el estado actual, métricas operativas y financieras, y muestra los KPIs más importantes.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Finanzas y proyecciones: Presenta fechas, montos, usos de los fondos, y resultados financieros proyectados.</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+</table>
+<div class="result">Promedio Deck: <span id="promedio-deck">0</span></div>
+
+<h2>Video - Variables</h2>
+<table id="video-variables">
+    <tr>
+        <th>Criterio</th>
+        <th>Calificación (1-5)</th>
+    </tr>
+    <tr>
+        <td>Elementos técnicos: Subtítulos</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Elementos técnicos: Buen sonido</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Elementos técnicos: Todos los integrantes del equipo aparecen</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Elementos técnicos: La duración máxima es 1:30" (Minuto treinta segundos)</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Contenido: Pitch generado con la herramienta vista en clase</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Contenido: Responde claramente ¿Qué es?</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Contenido: Responde claramente ¿A quién va dirigido?</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Contenido: Responde claramente ¿Qué necesidad satisface?</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Contenido: Responde claramente ¿Cómo utiliza herramientas digitales?</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Contenido: Muestra el prototipo</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+    <tr>
+        <td>Enlace a redes sociales y créditos finales</td>
+        <td><input type="number" min="1" max="5" step="0.1" required></td>
+    </tr>
+</table>
+<div class="result">Promedio Video - Variables: <span id="promedio-video-variables">0</span></div>
+
+<div class="result">Promedio Total: <span id="promedio-total">0</span></div>
+
+
+        </body>
+        </html> 
+        
+        
+    </div>
+    <div class="actions">
+        <button onclick="mostrarMensaje()">Guardar Parcial</button>
+        <button onclick="mostrarMensaje()">Guardar Como</button>
+        <button onclick="window.location.href='https://maryics.github.io/MaryiCSCrowdMenu/'">Regresar al Menú Principal</button>
+    </div>
+</div>
+
+<footer>
+    Proyecto: Análisis de necesidades para el diseño e implementación de una solución de crowdfunding que dé soporte a las
+    empresas informales y micropymes en la zona centro de Bogotá. ADSIDEO 2020-2023
+</footer>    
+    <script>
+function calcularPromedio(categoria) {
+    const tabla = document.getElementById(categoria);
+    const inputs = tabla.querySelectorAll('input[type="number"]');
+    let suma = 0;
+    let count = 0;
+    
+    inputs.forEach(input => {
+        const valor = parseFloat(input.value);
+        if (!isNaN(valor) && valor >= 1 && valor <= 5) {
+            suma += valor;
+            count++;
+        }
+    });
+    
+    const promedio = count > 0 ? suma / count : 0;
+    const promedioElement = document.getElementById(`promedio-${categoria}`);
+    if (promedioElement) {
+        promedioElement.textContent = promedio.toFixed(2);
+    }
+    
+    console.log(`Promedio ${categoria}: ${promedio.toFixed(2)}`);
+    calcularPromedioGeneral();
+}
+
+function calcularPromedioGeneral() {
+    const categorias = [
+        'equipo',
+        'descripcion',
+        'mecenas',
+        'pmv',
+        'fuentes-ingreso',
+        'costos-variables',
+        'proyecto-digital',
+        'deck',
+        'video-variables'
+    ];
+    let sumaTotal = 0;
+    let countTotal = 0;
+
+    categorias.forEach(categoria => {
+        const promedioElement = document.getElementById(`promedio-${categoria}`);
+        if (promedioElement) {
+            const promedio = parseFloat(promedioElement.textContent);
+            if (!isNaN(promedio)) {
+                sumaTotal += promedio;
+                countTotal++;
+            }
+        }
+    });
+
+    const promedioGeneral = countTotal > 0 ? sumaTotal / countTotal : 0;
+    const promedioGeneralElement = document.getElementById('promedio-general');
+    if (promedioGeneralElement) {
+        promedioGeneralElement.textContent = promedioGeneral.toFixed(2);
+    }
+    
+    console.log(`Promedio General: ${promedioGeneral.toFixed(2)}`);
+    calcularPromedioTotal();
+}
+
+function calcularPromedioTotal() {
+    const inputs = document.querySelectorAll('input[type="number"]');
+    let sumaTotal = 0;
+    let countTotal = 0;
+
+    inputs.forEach(input => {
+        const valor = parseFloat(input.value);
+        if (!isNaN(valor) && valor >= 1 && valor <= 5) {
+            sumaTotal += valor;
+            countTotal++;
+        }
+    });
+
+    const promedioTotal = countTotal > 0 ? sumaTotal / countTotal : 0;
+    const promedioTotalElement = document.getElementById('promedio-total');
+    if (promedioTotalElement) {
+        promedioTotalElement.textContent = promedioTotal.toFixed(2);
+    }
+    
+    console.log(`Promedio Total: ${promedioTotal.toFixed(2)}`);
+}
+
+function inicializarCalculos() {
+    const inputs = document.querySelectorAll('input[type="number"]');
+    inputs.forEach(input => {
+        input.addEventListener('input', function() {
+            const categoria = this.closest('table').id;
+            calcularPromedio(categoria);
+        });
+    });
+
+    // Calcular promedios iniciales
+    calcularPromedio('equipo');
+    calcularPromedio('descripcion');
+    calcularPromedio('mecenas');
+    calcularPromedio('pmv');
+    calcularPromedio('fuentes-ingreso');
+    calcularPromedio('costos-variables');
+    calcularPromedio('proyecto-digital');
+    calcularPromedio('deck');
+    calcularPromedio('video-variables');
+}
+
+function mostrarMensaje() {
+    alert("Esta es una versión de prueba, no olvides hacer captura de pantalla de tu trabajo o botón derecho para guardar como PDF.");
+}
+
+// Inicializar cuando el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', inicializarCalculos);
+    </script>
+</body>
+</html>
